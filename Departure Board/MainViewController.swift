@@ -40,6 +40,14 @@ class MainViewController: UITableViewController {
         NotificationCenter.default.removeObserver(self)
     }
 
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        if let section = self.sectionValues.index(of: .edit) {
+            self.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
+        }
+    }
+
     private func reloadData() {
         self.settings = AppSettings.getSettings()
         self.sectionValues = settings.count > 0 ? [.settings, .edit] : [.edit]
@@ -78,7 +86,7 @@ extension MainViewController {
         case .edit:
             let cell = tableView.dequeue(cellType: ValueTableViewCell.self, for: indexPath)
             cell.textLabel?.text = "添加或移除車站"
-            cell.textLabel?.textColor = .appleBlue
+            cell.textLabel?.textColor = self.isEditing ? .lightGray : .appleBlue
             cell.detailTextLabel?.text = nil
             return cell
         }
