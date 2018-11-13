@@ -64,7 +64,6 @@ extension APIClient {
                 "line": lineStation.line.rawValue,
                 "station": lineStation.station.rawValue,
                 "language": LANGUAGE,
-                "date": apiRequestDateFormatter.string(from: Date())
             ]
             let queryString = queries.map { "\($0)=\($1)" }.joined(separator: "&")
             return URL(string: BASE_URL + "?" + queryString)!
@@ -108,9 +107,3 @@ private let apiResultDateFormatter: DateFormatter = {
     return formatter
 }()
 
-
-private let apiRequestDateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd"
-    return formatter
-}()
