@@ -18,15 +18,28 @@ class AppSettings {
     static let stationListDidUpdate = Notification.Name(rawValue: "AppSettingsStationListDidUpdate")
 
     // MAX is 3
-    static func setStations(_ stations: Set<MTRLineStation>) {
-        sharedUserDefaults?.set(stations.map { $0.rawValue }, forKey: SETTINGS_KEY)
+    static func setStationsAndDirections(_ stationsAndDirections: [StationAndDirection]) {
+        let settings = try? JSONEncoder().encode(stationsAndDirections)
+        sharedUserDefaults?.set(settings, forKey: SETTINGS_KEY)
         sharedUserDefaults?.synchronize()
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: AppSettings.stationListDidUpdate, object: nil)
         }
     }
 
-    static func getSettings() -> Set<MTRLineStation> {
-        return Set((sharedUserDefaults?.array(forKey: SETTINGS_KEY) as? [String] ?? []).compactMap { MTRLineStation(rawValue: $0) })
+    static func getSettings() -> [StationAndDirection] {
+        guard let data = sharedUserDefaults?.data(forKey: SETTINGS_KEY) else { return [] }
+        return (try? JSONDecoder().decode([StationAndDirection].self, from: data)) ?? []
     }
 }
+
+
+extension AppSettings {
+    struct StationAndDirection: Equatable, Codable {
+        let lineStation: MTRLineStation
+        let direction: MTRLine.Direction
+    }
+}
+
+extension MTRLineStation: Equatable {}
+

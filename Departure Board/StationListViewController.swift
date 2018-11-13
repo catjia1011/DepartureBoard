@@ -11,7 +11,7 @@ import UIKit
 class StationListViewController: UITableViewController {
 
     let lines = MTRLine.allCases
-    var selected = Set<MTRLineStation>()
+    var settings: [AppSettings.StationAndDirection] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +19,7 @@ class StationListViewController: UITableViewController {
         self.title = "車站列表"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDoneButtonItem(_:)))
 
-        self.tableView.register(cellType: UITableViewCell.self)
+        self.tableView.register(cellType: StationListCell.self)
         self.tableView.tableFooterView = UIView()
 
         self.reloadData()
@@ -32,7 +32,7 @@ class StationListViewController: UITableViewController {
     }
 
     private func reloadData() {
-        self.selected = AppSettings.getSettings()
+        self.settings = AppSettings.getSettings()
         self.tableView.reloadData()
     }
 
@@ -62,22 +62,32 @@ extension StationListViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(cellType: UITableViewCell.self, for: indexPath)
+        let cell = tableView.dequeue(cellType: StationListCell.self, for: indexPath)
         let lineStation = lines[indexPath.section].allLineStations[indexPath.row]
         cell.textLabel?.text = lineStation.station.name
-        cell.accessoryType = selected.contains(lineStation) ? .checkmark : .none
+        cell.setSelectedDirections(self.settings.filter { $0.lineStation == lineStation }.map { $0.direction })
+        cell.delegate = self
         return cell
     }
+}
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+
+extension StationListViewController: StationListCellDelegate {
+    func stationListCell(_ cell: StationListCell, didUpdateSelectStatus isSelected: Bool, for direction: MTRLine.Direction) {
+        guard let indexPath = self.tableView.indexPath(for: cell) else { return }
         let lineStation = lines[indexPath.section].allLineStations[indexPath.row]
-        if selected.contains(lineStation) {
-            selected.remove(lineStation)
-        } else {
-            selected.insert(lineStation)
+        let setting = AppSettings.StationAndDirection(lineStation: lineStation, direction: direction)
+
+        var newSettings = self.settings
+        if let index = newSettings.index(of: setting) {
+            newSettings.remove(at: index)
         }
 
-        AppSettings.setStations(self.selected)
+        if isSelected {
+            newSettings.append(setting)
+        }
+
+        AppSettings.setStationsAndDirections(newSettings)
     }
+
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewController: UITableViewController {
 
-    var lineStations = [MTRLineStation]()
+    var settings: [AppSettings.StationAndDirection] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,19 +31,19 @@ class MainViewController: UITableViewController {
     }
 
     private func reloadData() {
-        self.lineStations = Array(AppSettings.getSettings()) // TODO
+        self.settings = AppSettings.getSettings()
         self.tableView.reloadData()
     }
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lineStations.count
+        return settings.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(cellType: UITableViewCell.self, for: indexPath)
-        let lineStation = lineStations[indexPath.row]
-        cell.textLabel?.text = lineStation.station.name
+        let setting = settings[indexPath.row]
+        cell.textLabel?.text = "\(setting.lineStation.station.name) (\(setting.direction.title))"
         return cell
     }
 

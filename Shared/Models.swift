@@ -37,9 +37,18 @@ enum MTRLine: String, CaseIterable {
 }
 
 extension MTRLine {
-    enum Direction: String {
+    enum Direction: String, CaseIterable {
         case up     = "UP"
         case down   = "DOWN"
+
+        var title: String {
+            switch self {
+            case .up:
+                return "北上"
+            case .down:
+                return "南下"
+            }
+        }
     }
 
     var name: String {
@@ -74,7 +83,7 @@ private func getAllStations(of line: MTRLine) -> [MTRStation] {
 }
 
 
-struct MTRLineStation: Hashable {
+struct MTRLineStation {
     let line: MTRLine
     let station: MTRStation
     init?(line: MTRLine, station: MTRStation) {
@@ -111,3 +120,10 @@ struct DepartureInfo {
         return MTRStation(rawValue: destinationCode)
     }
 }
+
+
+// codable
+extension MTRLine.Direction: Codable {}
+extension MTRLine: Codable {}
+extension MTRStation: Codable {}
+extension MTRLineStation: Codable {}

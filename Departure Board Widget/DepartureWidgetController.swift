@@ -14,7 +14,7 @@ class DepartureWidgetController: UIViewController, NCWidgetProviding {
     let selected = AppSettings.getSettings()
     let lineStations: [MTRLineStation] = MTRLine.tseungKwanOLine.allLineStations
     lazy var vcs: [DepartureTableViewController] = lineStations.compactMap { (lineStation) in
-        guard selected.contains(lineStation) else { return nil }
+        guard selected.contains(where: { $0.lineStation == lineStation }) else { return nil }
         let station = lineStation.station
         let direction: MTRLine.Direction = (station == .lohasPark || station == .poLam) ? .down : .up
         return DepartureTableViewController(lineStation: lineStation, direction: direction)

@@ -30,6 +30,11 @@ extension UITableView {
 }
 
 
+extension UIColor {
+    static let appleBlue: UIColor = UIColor(red: 0, green: 122.0 / 255, blue: 255.0 / 255, alpha: 1)
+}
+
+
 enum Result<Value> {
     case success(Value)
     case failure(Error)
