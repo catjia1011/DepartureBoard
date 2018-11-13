@@ -43,7 +43,10 @@ class MainViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(cellType: UITableViewCell.self, for: indexPath)
         let setting = settings[indexPath.row]
-        cell.textLabel?.text = "\(setting.lineStation.station.name) (\(setting.direction.title))"
+        let station = setting.lineStation.station
+        let line = setting.lineStation.line
+        let direction = setting.direction
+        cell.textLabel?.text = "\(station.name) → \(line.destinationName(for: direction))"
         return cell
     }
 

@@ -40,15 +40,6 @@ extension MTRLine {
     enum Direction: String, CaseIterable {
         case up     = "UP"
         case down   = "DOWN"
-
-        var title: String {
-            switch self {
-            case .up:
-                return "北上"
-            case .down:
-                return "南下"
-            }
-        }
     }
 
     var name: String {

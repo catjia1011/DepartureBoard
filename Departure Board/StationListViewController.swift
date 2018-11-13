@@ -64,8 +64,8 @@ extension StationListViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(cellType: StationListCell.self, for: indexPath)
         let lineStation = lines[indexPath.section].allLineStations[indexPath.row]
-        cell.textLabel?.text = lineStation.station.name
-        cell.setSelectedDirections(self.settings.filter { $0.lineStation == lineStation }.map { $0.direction })
+        let selectedDirections = self.settings.filter { $0.lineStation == lineStation }.map { $0.direction }
+        cell.setLineStation(lineStation, selectedDirections: selectedDirections)
         cell.delegate = self
         return cell
     }

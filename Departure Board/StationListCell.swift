@@ -25,10 +25,10 @@ class StationListCell: UITableViewCell {
 
         stackView.axis = .horizontal
         stackView.spacing = 5
-        stackView.distribution = .fillEqually
         self.contentView.addSubview(stackView)
 
         for button in buttons {
+            button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
             button.addTarget(self, action: #selector(didTapAddButton(_:)), for: .touchUpInside)
             stackView.addArrangedSubview(button)
         }
@@ -50,15 +50,18 @@ class StationListCell: UITableViewCell {
         stackView.isHidden = false
 
         let spacing = 10 as CGFloat
-        stackView.frame.size = CGSize(width: 120, height: 28)
+        stackView.frame.size.width = stackView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).width
+        stackView.frame.size.height = 28
         stackView.frame.origin.x = textLabel.frame.maxX - stackView.frame.width
         stackView.center.y = self.contentView.bounds.height / 2
         textLabel.frame.size.width -= (stackView.frame.width + spacing)
     }
 
-    func setSelectedDirections(_ directions: [MTRLine.Direction]) {
+    func setLineStation(_ lineStation: MTRLineStation, selectedDirections: [MTRLine.Direction]) {
+        self.textLabel?.text = lineStation.station.name
         for button in buttons {
-            button.isSelected = directions.contains(button.direction)
+            button.configure(line: lineStation.line)
+            button.isSelected = selectedDirections.contains(button.direction)
         }
     }
 
@@ -66,6 +69,7 @@ class StationListCell: UITableViewCell {
         super.prepareForReuse()
 
         self.delegate = nil
+        self.textLabel?.text = nil
         for button in buttons {
             button.isSelected = false
         }
@@ -107,7 +111,10 @@ private class AddButton: UIButton {
         self.titleLabel?.font = .systemFont(ofSize: 13)
         self.setTitleColor(.appleBlue, for: .normal)
         self.setTitleColor(.white, for: .selected)
-        self.setTitle(direction.title, for: .normal)
+    }
+
+    func configure(line: MTRLine) {
+        self.setTitle(line.destinationName(for: direction), for: .normal)
     }
 
     required init?(coder aDecoder: NSCoder) {
