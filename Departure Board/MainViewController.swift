@@ -28,7 +28,7 @@ class MainViewController: UITableViewController {
 
         self.title = "當前顯示車站"
 
-        self.tableView.register(cellType: UITableViewCell.self)
+        self.tableView.register(cellType: ValueTableViewCell.self)
         self.tableView.tableFooterView = UIView()
 
         self.reloadData()
@@ -65,21 +65,21 @@ extension MainViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch sectionValues[indexPath.section] {
         case .settings:
-            let cell = tableView.dequeue(cellType: UITableViewCell.self, for: indexPath)
+            let cell = tableView.dequeue(cellType: ValueTableViewCell.self, for: indexPath)
             let setting = settings[indexPath.row]
             let station = setting.lineStation.station
             let line = setting.lineStation.line
             let direction = setting.direction
-            cell.textLabel?.text = "\(station.name) → \(line.destinationName(for: direction))"
+            cell.textLabel?.text = station.name
             cell.textLabel?.textColor = .black
-            cell.selectionStyle = .default
+            cell.detailTextLabel?.text = line.destinationName(for: direction, withRoutingWord: true)
             return cell
 
         case .edit:
-            let cell = tableView.dequeue(cellType: UITableViewCell.self, for: indexPath)
+            let cell = tableView.dequeue(cellType: ValueTableViewCell.self, for: indexPath)
             cell.textLabel?.text = "添加或移除車站"
             cell.textLabel?.textColor = .appleBlue
-            cell.selectionStyle = .default
+            cell.detailTextLabel?.text = nil
             return cell
         }
     }
@@ -148,3 +148,13 @@ extension MainViewController {
     }
 }
 
+
+private class ValueTableViewCell: UITableViewCell {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: .value1, reuseIdentifier: reuseIdentifier)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
