@@ -57,10 +57,10 @@ extension MTRLine {
         return getAllStations(of: self).map { MTRLineStation(line: self, verifiedStation: $0) }
     }
 
-    func destinationName(for direction: Direction) -> String {
+    func destinationName(for direction: Direction, withRoutingWord: Bool = false) -> String {
         switch direction {
-        case .up:   return "寶琳/康城"
-        case .down: return "北角"
+        case .up:   return withRoutingWord ? "往寶琳/康城" : "寶琳/康城"
+        case .down: return withRoutingWord ? "往北角" : "北角"
         }
     }
 }

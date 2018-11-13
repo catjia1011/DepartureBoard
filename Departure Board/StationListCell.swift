@@ -114,7 +114,7 @@ private class AddButton: UIButton {
     }
 
     func configure(line: MTRLine) {
-        self.setTitle(line.destinationName(for: direction), for: .normal)
+        self.setTitle(line.destinationName(for: direction, withRoutingWord: true), for: .normal)
     }
 
     required init?(coder aDecoder: NSCoder) {
