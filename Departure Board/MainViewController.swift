@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  Departure Board
 //
 //  Created by Cat Jia on 29/9/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UITableViewController {
+class MainViewController: UITableViewController {
 
     let lineStations: [MTRLineStation] = MTRLine.tseungKwanOLine.allLineStations
     var selected = Set<MTRLineStation>()

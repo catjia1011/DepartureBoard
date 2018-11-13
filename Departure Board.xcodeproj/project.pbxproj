@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4E5C00F2215FBDFA0027B1DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C00F1215FBDFA0027B1DA /* AppDelegate.swift */; };
-		4E5C00F4215FBDFA0027B1DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C00F3215FBDFA0027B1DA /* ViewController.swift */; };
+		4E5C00F4215FBDFA0027B1DA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C00F3215FBDFA0027B1DA /* MainViewController.swift */; };
 		4E5C00F9215FBDFB0027B1DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E5C00F8215FBDFB0027B1DA /* Assets.xcassets */; };
 		4E5C00FC215FBDFB0027B1DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E5C00FA215FBDFB0027B1DA /* LaunchScreen.storyboard */; };
 		4E5C0108215FC8F60027B1DA /* convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C0107215FC8F60027B1DA /* convenience.swift */; };
@@ -55,7 +55,7 @@
 		04787647D29FE511B7B24F4C /* Pods-Departure Board.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Departure Board.release.xcconfig"; path = "Pods/Target Support Files/Pods-Departure Board/Pods-Departure Board.release.xcconfig"; sourceTree = "<group>"; };
 		4E5C00EE215FBDFA0027B1DA /* Departure Board.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Departure Board.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E5C00F1215FBDFA0027B1DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4E5C00F3215FBDFA0027B1DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4E5C00F3215FBDFA0027B1DA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4E5C00F8215FBDFB0027B1DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4E5C00FB215FBDFB0027B1DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4E5C00FD215FBDFB0027B1DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 			children = (
 				4EEB9C6721639ED700E9A56E /* Departure Board.entitlements */,
 				4E5C00F1215FBDFA0027B1DA /* AppDelegate.swift */,
-				4E5C00F3215FBDFA0027B1DA /* ViewController.swift */,
+				4E5C00F3215FBDFA0027B1DA /* MainViewController.swift */,
 				4E5C00F8215FBDFB0027B1DA /* Assets.xcassets */,
 				4E5C00FA215FBDFB0027B1DA /* LaunchScreen.storyboard */,
 				4E5C00FD215FBDFB0027B1DA /* Info.plist */,
@@ -348,7 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E5C0108215FC8F60027B1DA /* convenience.swift in Sources */,
-				4E5C00F4215FBDFA0027B1DA /* ViewController.swift in Sources */,
+				4E5C00F4215FBDFA0027B1DA /* MainViewController.swift in Sources */,
 				4E5C00F2215FBDFA0027B1DA /* AppDelegate.swift in Sources */,
 				4EEB9C6A21639F1D00E9A56E /* AppSettings.swift in Sources */,
 				4E5C010C215FD1360027B1DA /* Models.swift in Sources */,
@@ -516,7 +516,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8RY4T3LPW8;
 				INFOPLIST_FILE = "Departure Board/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cat.jia.departureboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -533,7 +536,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8RY4T3LPW8;
 				INFOPLIST_FILE = "Departure Board/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cat.jia.departureboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -556,7 +562,11 @@
 				);
 				INFOPLIST_FILE = "Departure Board Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cat.jia.departureboard.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -580,7 +590,11 @@
 				);
 				INFOPLIST_FILE = "Departure Board Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cat.jia.departureboard.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
