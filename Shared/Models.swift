@@ -58,9 +58,12 @@ extension MTRLine {
     }
 
     func destinationName(for direction: Direction, withRoutingWord: Bool = false) -> String {
-        switch direction {
-        case .up:   return withRoutingWord ? "往寶琳/康城" : "寶琳/康城"
-        case .down: return withRoutingWord ? "往北角" : "北角"
+        switch self {
+        case .tseungKwanOLine:
+            switch direction {
+            case .up:   return withRoutingWord ? "往寶琳/康城" : "寶琳/康城"
+            case .down: return withRoutingWord ? "往北角" : "北角"
+            }
         }
     }
 }
