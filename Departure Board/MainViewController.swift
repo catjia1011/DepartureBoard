@@ -10,8 +10,8 @@ import UIKit
 
 class MainViewController: UITableViewController {
 
-    private enum Section { case settings, edit }
-    private var sectionValues: [Section] = [.settings, .edit]
+    private enum Section { case settings, manage }
+    private var sectionValues: [Section] = [.settings, .manage]
 
     var settings: [AppSettings.StationAndDirection] = []
 
@@ -42,15 +42,15 @@ class MainViewController: UITableViewController {
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        
-        if let section = self.sectionValues.index(of: .edit) {
+
+        if let section = self.sectionValues.index(of: .manage) {
             self.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
         }
     }
 
     private func reloadData() {
         self.settings = AppSettings.getSettings()
-        self.sectionValues = settings.count > 0 ? [.settings, .edit] : [.edit]
+        self.sectionValues = settings.count > 0 ? [.settings, .manage] : [.manage]
         self.navigationItem.rightBarButtonItem = settings.count > 1 ? self.editButtonItem : nil
         self.tableView.reloadData()
     }
@@ -65,7 +65,7 @@ extension MainViewController {
         switch sectionValues[section] {
         case .settings:
             return settings.count
-        case .edit:
+        case .manage:
             return 1
         }
     }
@@ -83,7 +83,7 @@ extension MainViewController {
             cell.detailTextLabel?.text = line.destinationName(for: direction, withRoutingWord: true)
             return cell
 
-        case .edit:
+        case .manage:
             let cell = tableView.dequeue(cellType: ValueTableViewCell.self, for: indexPath)
             cell.textLabel?.text = "添加或移除車站"
             cell.textLabel?.textColor = self.isEditing ? .lightGray : .appleBlue
@@ -99,7 +99,7 @@ extension MainViewController {
         case .settings:
             break
 
-        case .edit:
+        case .manage:
             let vc = UINavigationController(rootViewController: StationListViewController())
             self.present(vc, animated: true, completion: nil)
         }
@@ -109,7 +109,7 @@ extension MainViewController {
         switch sectionValues[indexPath.section] {
         case .settings:
             return true
-        case .edit:
+        case .manage:
             return false
         }
     }
