@@ -57,9 +57,10 @@ class StationListCell: UITableViewCell {
         textLabel.frame.size.width -= (stackView.frame.width + spacing)
     }
 
-    func setLineStation(_ lineStation: MTRLineStation, selectedDirections: [MTRLine.Direction]) {
+    func setLineStation(_ lineStation: MTRLineStation, availableDirections: [MTRLine.Direction], selectedDirections: [MTRLine.Direction]) {
         self.textLabel?.text = lineStation.station.name
         for button in buttons {
+            button.isEnabled = availableDirections.contains(button.direction)
             button.configure(line: lineStation.line)
             button.isSelected = selectedDirections.contains(button.direction)
         }
@@ -71,6 +72,8 @@ class StationListCell: UITableViewCell {
         self.delegate = nil
         self.textLabel?.text = nil
         for button in buttons {
+            button.isEnabled = false
+            button.configure(line: nil)
             button.isSelected = false
         }
     }
@@ -113,8 +116,8 @@ private class AddButton: UIButton {
         self.setTitleColor(.white, for: .selected)
     }
 
-    func configure(line: MTRLine) {
-        self.setTitle(line.destinationName(for: direction, withRoutingWord: true), for: .normal)
+    func configure(line: MTRLine?) {
+        self.setTitle(line?.destinationName(for: direction, withRoutingWord: true), for: .normal)
     }
 
     required init?(coder aDecoder: NSCoder) {

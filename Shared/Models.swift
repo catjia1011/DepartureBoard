@@ -49,6 +49,17 @@ extension MTRLine {
         }
     }
 
+    var endStations: [MTRStation: MTRLine.Direction] {
+        switch self {
+        case .tseungKwanOLine:
+            return [
+                .northPoint: .up,
+                .lohasPark: .down,
+                .poLam: .down,
+            ]
+        }
+    }
+
     var allStations: [MTRStation] {
         return getAllStations(of: self)
     }
@@ -89,6 +100,15 @@ struct MTRLineStation {
     fileprivate init(line: MTRLine, verifiedStation: MTRStation) {
         self.line = line
         self.station = verifiedStation
+    }
+}
+
+extension MTRLineStation {
+    var availableDirections: [MTRLine.Direction] {
+        if let endStationDirection = line.endStations[station] {
+            return [endStationDirection]
+        }
+        return MTRLine.Direction.allCases
     }
 }
 
