@@ -50,6 +50,10 @@ class MainViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
     @objc private func didTapEditButtonItem(_ sender: Any) {
         let vc = UINavigationController(rootViewController: StationListViewController())
         self.present(vc, animated: true, completion: nil)
