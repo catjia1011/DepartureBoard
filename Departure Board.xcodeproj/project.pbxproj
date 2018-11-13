@@ -12,17 +12,23 @@
 		4E5C00F9215FBDFB0027B1DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E5C00F8215FBDFB0027B1DA /* Assets.xcassets */; };
 		4E5C00FC215FBDFB0027B1DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E5C00FA215FBDFB0027B1DA /* LaunchScreen.storyboard */; };
 		4E5C0108215FC8F60027B1DA /* convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C0107215FC8F60027B1DA /* convenience.swift */; };
-		4E5C010C215FD1360027B1DA /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C010B215FD1360027B1DA /* Models.swift */; };
+		4E5C010C215FD1360027B1DA /* DepartureInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C010B215FD1360027B1DA /* DepartureInfo.swift */; };
 		4E5C0113215FDB470027B1DA /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5C0112215FDB470027B1DA /* NotificationCenter.framework */; };
 		4E5C0116215FDB470027B1DA /* DepartureWidgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C0115215FDB470027B1DA /* DepartureWidgetController.swift */; };
 		4E5C011D215FDB470027B1DA /* Departure Board Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4E5C0111215FDB470027B1DA /* Departure Board Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4E5C0123215FDEC60027B1DA /* convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C0107215FC8F60027B1DA /* convenience.swift */; };
 		4E5C0124215FDEC60027B1DA /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C0103215FBF740027B1DA /* APIClient.swift */; };
-		4E5C0125215FDEC60027B1DA /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C010B215FD1360027B1DA /* Models.swift */; };
+		4E5C0125215FDEC60027B1DA /* DepartureInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C010B215FD1360027B1DA /* DepartureInfo.swift */; };
 		4E5C0129215FDED70027B1DA /* DepartureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C0128215FDED70027B1DA /* DepartureTableViewController.swift */; };
 		4E5C012B215FE0170027B1DA /* DepartureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C012A215FE0170027B1DA /* DepartureCell.swift */; };
 		4E83F9F4219AD42800FEECB3 /* StationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E83F9F3219AD42800FEECB3 /* StationListViewController.swift */; };
 		4E83F9F6219ADD4C00FEECB3 /* StationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E83F9F5219ADD4C00FEECB3 /* StationListCell.swift */; };
+		4EB6CA36219B37D200A36D0F /* MTRLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6CA35219B37D200A36D0F /* MTRLine.swift */; };
+		4EB6CA37219B37D200A36D0F /* MTRLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6CA35219B37D200A36D0F /* MTRLine.swift */; };
+		4EB6CA39219B37D800A36D0F /* MTRStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6CA38219B37D800A36D0F /* MTRStation.swift */; };
+		4EB6CA3A219B37D800A36D0F /* MTRStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6CA38219B37D800A36D0F /* MTRStation.swift */; };
+		4EB6CA3C219B37DF00A36D0F /* MTRLineStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6CA3B219B37DF00A36D0F /* MTRLineStation.swift */; };
+		4EB6CA3D219B37DF00A36D0F /* MTRLineStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6CA3B219B37DF00A36D0F /* MTRLineStation.swift */; };
 		4EEB9C6A21639F1D00E9A56E /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB9C6921639F1D00E9A56E /* AppSettings.swift */; };
 		4EEB9C6B21639F1D00E9A56E /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB9C6921639F1D00E9A56E /* AppSettings.swift */; };
 		C61229310795734B5C6C9AB2 /* Pods_Departure_Board.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A834F6951CDA5F8C66EF6DA9 /* Pods_Departure_Board.framework */; };
@@ -63,7 +69,7 @@
 		4E5C00FD215FBDFB0027B1DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E5C0103215FBF740027B1DA /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		4E5C0107215FC8F60027B1DA /* convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = convenience.swift; sourceTree = "<group>"; };
-		4E5C010B215FD1360027B1DA /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		4E5C010B215FD1360027B1DA /* DepartureInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureInfo.swift; sourceTree = "<group>"; };
 		4E5C0111215FDB470027B1DA /* Departure Board Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Departure Board Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E5C0112215FDB470027B1DA /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		4E5C0115215FDB470027B1DA /* DepartureWidgetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureWidgetController.swift; sourceTree = "<group>"; };
@@ -72,6 +78,9 @@
 		4E5C012A215FE0170027B1DA /* DepartureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureCell.swift; sourceTree = "<group>"; };
 		4E83F9F3219AD42800FEECB3 /* StationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListViewController.swift; sourceTree = "<group>"; };
 		4E83F9F5219ADD4C00FEECB3 /* StationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListCell.swift; sourceTree = "<group>"; };
+		4EB6CA35219B37D200A36D0F /* MTRLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTRLine.swift; sourceTree = "<group>"; };
+		4EB6CA38219B37D800A36D0F /* MTRStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTRStation.swift; sourceTree = "<group>"; };
+		4EB6CA3B219B37DF00A36D0F /* MTRLineStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTRLineStation.swift; sourceTree = "<group>"; };
 		4EEB9C6721639ED700E9A56E /* Departure Board.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Departure Board.entitlements"; sourceTree = "<group>"; };
 		4EEB9C6821639EFC00E9A56E /* Departure Board Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Departure Board Widget.entitlements"; sourceTree = "<group>"; };
 		4EEB9C6921639F1D00E9A56E /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
@@ -167,10 +176,21 @@
 			isa = PBXGroup;
 			children = (
 				4E5C0107215FC8F60027B1DA /* convenience.swift */,
-				4E5C010B215FD1360027B1DA /* Models.swift */,
+				4EB6CA34219B37BC00A36D0F /* models */,
 				4EEB9C6921639F1D00E9A56E /* AppSettings.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		4EB6CA34219B37BC00A36D0F /* models */ = {
+			isa = PBXGroup;
+			children = (
+				4EB6CA35219B37D200A36D0F /* MTRLine.swift */,
+				4EB6CA38219B37D800A36D0F /* MTRStation.swift */,
+				4EB6CA3B219B37DF00A36D0F /* MTRLineStation.swift */,
+				4E5C010B215FD1360027B1DA /* DepartureInfo.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 		C9B0D8634BBBFE1AC3FDD736 /* Frameworks */ = {
@@ -356,8 +376,11 @@
 				4E5C0108215FC8F60027B1DA /* convenience.swift in Sources */,
 				4E5C00F4215FBDFA0027B1DA /* MainViewController.swift in Sources */,
 				4E5C00F2215FBDFA0027B1DA /* AppDelegate.swift in Sources */,
+				4EB6CA36219B37D200A36D0F /* MTRLine.swift in Sources */,
+				4EB6CA3C219B37DF00A36D0F /* MTRLineStation.swift in Sources */,
 				4EEB9C6A21639F1D00E9A56E /* AppSettings.swift in Sources */,
-				4E5C010C215FD1360027B1DA /* Models.swift in Sources */,
+				4E5C010C215FD1360027B1DA /* DepartureInfo.swift in Sources */,
+				4EB6CA39219B37D800A36D0F /* MTRStation.swift in Sources */,
 				4E83F9F4219AD42800FEECB3 /* StationListViewController.swift in Sources */,
 				4E83F9F6219ADD4C00FEECB3 /* StationListCell.swift in Sources */,
 			);
@@ -370,8 +393,11 @@
 				4E5C012B215FE0170027B1DA /* DepartureCell.swift in Sources */,
 				4E5C0116215FDB470027B1DA /* DepartureWidgetController.swift in Sources */,
 				4E5C0123215FDEC60027B1DA /* convenience.swift in Sources */,
+				4EB6CA37219B37D200A36D0F /* MTRLine.swift in Sources */,
+				4EB6CA3D219B37DF00A36D0F /* MTRLineStation.swift in Sources */,
 				4E5C0124215FDEC60027B1DA /* APIClient.swift in Sources */,
-				4E5C0125215FDEC60027B1DA /* Models.swift in Sources */,
+				4E5C0125215FDEC60027B1DA /* DepartureInfo.swift in Sources */,
+				4EB6CA3A219B37D800A36D0F /* MTRStation.swift in Sources */,
 				4E5C0129215FDED70027B1DA /* DepartureTableViewController.swift in Sources */,
 				4EEB9C6B21639F1D00E9A56E /* AppSettings.swift in Sources */,
 			);
