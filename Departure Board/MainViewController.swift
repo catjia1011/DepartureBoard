@@ -11,7 +11,7 @@ import UIKit
 class MainViewController: UITableViewController {
 
     private enum Section { case settings, edit }
-    private let sectionValues: [Section] = [.settings, .edit]
+    private var sectionValues: [Section] = [.settings, .edit]
 
     var settings: [AppSettings.StationAndDirection] = []
 
@@ -27,7 +27,6 @@ class MainViewController: UITableViewController {
         super.viewDidLoad()
 
         self.title = "當前顯示車站"
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
 
         self.tableView.register(cellType: UITableViewCell.self)
         self.tableView.tableFooterView = UIView()
@@ -43,6 +42,8 @@ class MainViewController: UITableViewController {
 
     private func reloadData() {
         self.settings = AppSettings.getSettings()
+        self.sectionValues = settings.count > 0 ? [.settings, .edit] : [.edit]
+        self.navigationItem.rightBarButtonItem = settings.count > 1 ? self.editButtonItem : nil
         self.tableView.reloadData()
     }
 }
@@ -71,12 +72,14 @@ extension MainViewController {
             let direction = setting.direction
             cell.textLabel?.text = "\(station.name) → \(line.destinationName(for: direction))"
             cell.textLabel?.textColor = .black
+            cell.selectionStyle = .default
             return cell
 
         case .edit:
             let cell = tableView.dequeue(cellType: UITableViewCell.self, for: indexPath)
             cell.textLabel?.text = "添加或移除車站"
             cell.textLabel?.textColor = .appleBlue
+            cell.selectionStyle = .default
             return cell
         }
     }
