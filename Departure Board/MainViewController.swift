@@ -10,13 +10,13 @@ import UIKit
 
 class MainViewController: UITableViewController {
 
-    let lineStations: [MTRLineStation] = MTRLine.tseungKwanOLine.allLineStations
-    var selected = Set<MTRLineStation>()
+    var lineStations = [MTRLineStation]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "設定顯示站點"
+        self.title = "當前顯示車站"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didTapEditButtonItem(_:)))
 
         self.tableView.register(cellType: UITableViewCell.self)
         self.tableView.tableFooterView = UIView()
@@ -31,7 +31,7 @@ class MainViewController: UITableViewController {
     }
 
     private func reloadData() {
-        self.selected = AppSettings.getSettings()
+        self.lineStations = Array(AppSettings.getSettings()) // TODO
         self.tableView.reloadData()
     }
 
@@ -44,22 +44,13 @@ class MainViewController: UITableViewController {
         let cell = tableView.dequeue(cellType: UITableViewCell.self, for: indexPath)
         let lineStation = lineStations[indexPath.row]
         cell.textLabel?.text = lineStation.station.name
-        cell.accessoryType = selected.contains(lineStation) ? .checkmark : .none
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let lineStation = lineStations[indexPath.row]
-        if selected.contains(lineStation) {
-            selected.remove(lineStation)
-        } else {
-            selected.insert(lineStation)
-        }
-
-        AppSettings.setStations(Set(self.lineStations.filter { selected.contains($0) }))
+    @objc private func didTapEditButtonItem(_ sender: Any) {
+        let vc = UINavigationController(rootViewController: StationListViewController())
+        self.present(vc, animated: true, completion: nil)
     }
-
 
     @objc private func didReceiveNotification(_ notification: Notification) {
         if notification.name == AppSettings.stationListDidUpdate {

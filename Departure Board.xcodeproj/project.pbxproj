@@ -21,6 +21,7 @@
 		4E5C0125215FDEC60027B1DA /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C010B215FD1360027B1DA /* Models.swift */; };
 		4E5C0129215FDED70027B1DA /* DepartureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C0128215FDED70027B1DA /* DepartureTableViewController.swift */; };
 		4E5C012B215FE0170027B1DA /* DepartureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C012A215FE0170027B1DA /* DepartureCell.swift */; };
+		4E83F9F4219AD42800FEECB3 /* StationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E83F9F3219AD42800FEECB3 /* StationListViewController.swift */; };
 		4EEB9C6A21639F1D00E9A56E /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB9C6921639F1D00E9A56E /* AppSettings.swift */; };
 		4EEB9C6B21639F1D00E9A56E /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB9C6921639F1D00E9A56E /* AppSettings.swift */; };
 		C61229310795734B5C6C9AB2 /* Pods_Departure_Board.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A834F6951CDA5F8C66EF6DA9 /* Pods_Departure_Board.framework */; };
@@ -68,6 +69,7 @@
 		4E5C011A215FDB470027B1DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E5C0128215FDED70027B1DA /* DepartureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureTableViewController.swift; sourceTree = "<group>"; };
 		4E5C012A215FE0170027B1DA /* DepartureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureCell.swift; sourceTree = "<group>"; };
+		4E83F9F3219AD42800FEECB3 /* StationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListViewController.swift; sourceTree = "<group>"; };
 		4EEB9C6721639ED700E9A56E /* Departure Board.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Departure Board.entitlements"; sourceTree = "<group>"; };
 		4EEB9C6821639EFC00E9A56E /* Departure Board Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Departure Board Widget.entitlements"; sourceTree = "<group>"; };
 		4EEB9C6921639F1D00E9A56E /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				4EEB9C6721639ED700E9A56E /* Departure Board.entitlements */,
 				4E5C00F1215FBDFA0027B1DA /* AppDelegate.swift */,
 				4E5C00F3215FBDFA0027B1DA /* MainViewController.swift */,
+				4E83F9F3219AD42800FEECB3 /* StationListViewController.swift */,
 				4E5C00F8215FBDFB0027B1DA /* Assets.xcassets */,
 				4E5C00FA215FBDFB0027B1DA /* LaunchScreen.storyboard */,
 				4E5C00FD215FBDFB0027B1DA /* Info.plist */,
@@ -352,6 +355,7 @@
 				4E5C00F2215FBDFA0027B1DA /* AppDelegate.swift in Sources */,
 				4EEB9C6A21639F1D00E9A56E /* AppSettings.swift in Sources */,
 				4E5C010C215FD1360027B1DA /* Models.swift in Sources */,
+				4E83F9F4219AD42800FEECB3 /* StationListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

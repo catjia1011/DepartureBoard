@@ -32,7 +32,7 @@ enum MTRStation: String {
     }
 }
 
-enum MTRLine: String {
+enum MTRLine: String, CaseIterable {
     case tseungKwanOLine = "TKL"
 }
 
@@ -42,12 +42,19 @@ extension MTRLine {
         case down   = "DOWN"
     }
 
+    var name: String {
+        switch self {
+        case .tseungKwanOLine:
+            return "將軍澳綫"
+        }
+    }
+
     var allStations: [MTRStation] {
         return getAllStations(of: self)
     }
 
     var allLineStations: [MTRLineStation] {
-        return self.allStations.map { MTRLineStation(line: self, verifiedStation: $0) }
+        return getAllStations(of: self).map { MTRLineStation(line: self, verifiedStation: $0) }
     }
 
     func destinationName(for direction: Direction) -> String {
