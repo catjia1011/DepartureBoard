@@ -31,7 +31,7 @@ extension UITableView {
 
 
 extension UIColor {
-    static let appleBlue: UIColor = UIColor(red: 0, green: 122.0 / 255, blue: 255.0 / 255, alpha: 1)
+    static let mainTintColor: UIColor = UIColor(red: 180.0 / 255, green: 34.0 / 255, blue: 73.0 / 255, alpha: 1)
 }
 
 

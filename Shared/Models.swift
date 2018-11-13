@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum MTRStation: String {
     case northPoint     = "NOP"
@@ -46,6 +47,13 @@ extension MTRLine {
         switch self {
         case .tseungKwanOLine:
             return "將軍澳綫"
+        }
+    }
+
+    var color: UIColor {
+        switch self {
+        case .tseungKwanOLine:
+            return UIColor(red: 125.0 / 255, green: 73.0 / 255, blue: 157.0 / 255, alpha: 1)
         }
     }
 

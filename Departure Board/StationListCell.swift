@@ -102,6 +102,8 @@ private class AddButton: UIButton {
         }
     }
 
+    private var lineColor: UIColor?
+
     let direction: MTRLine.Direction
     init(direction: MTRLine.Direction) {
         self.direction = direction
@@ -109,7 +111,6 @@ private class AddButton: UIButton {
 
         self.layer.cornerRadius = 4
         self.titleLabel?.font = .systemFont(ofSize: 13)
-        self.setTitleColor(.appleBlue, for: .normal)
         self.setTitleColor(disabledColor, for: .disabled)
         self.setTitleColor(.white, for: .selected)
     }
@@ -120,10 +121,13 @@ private class AddButton: UIButton {
 
     func configure(line: MTRLine?) {
         self.setTitle(line?.destinationName(for: direction, withRoutingWord: true), for: .normal)
+        self.lineColor = line?.color
     }
 
     private func updateUI() {
-        let color: UIColor = isEnabled ? .appleBlue : disabledColor
+        let color: UIColor = isEnabled ? (self.lineColor ?? .mainTintColor) : disabledColor
+        self.setTitleColor(color, for: .normal)
+        
         if isSelected {
             self.layer.borderWidth = 0
             self.layer.borderColor = UIColor.clear.cgColor

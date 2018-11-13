@@ -86,7 +86,7 @@ extension MainViewController {
         case .manage:
             let cell = tableView.dequeue(cellType: ValueTableViewCell.self, for: indexPath)
             cell.textLabel?.text = "添加或移除車站"
-            cell.textLabel?.textColor = self.isEditing ? .lightGray : .appleBlue
+            cell.textLabel?.textColor = self.isEditing ? .lightGray : .mainTintColor
             cell.detailTextLabel?.text = nil
             return cell
         }
