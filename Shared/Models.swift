@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum TseungKwanOLineStation: String, CaseIterable {
+enum MTRStation: String {
     case northPoint     = "NOP"
     case quarryBay      = "QUB"
     case yauTong        = "YAT"
@@ -32,70 +32,75 @@ enum TseungKwanOLineStation: String, CaseIterable {
     }
 }
 
-enum MTRStation: Hashable {
-    case tko(TseungKwanOLineStation)
+enum MTRLine: String {
+    case tseungKwanOLine = "TKL"
+}
 
-    var name: String {
-        switch self {
-        case .tko(let station):
-            return station.name
-        }
+extension MTRLine {
+    enum Direction: String {
+        case up     = "UP"
+        case down   = "DOWN"
     }
 
-    func destinationName(for direction: MTRLineDirection) -> String {
+    var allStations: [MTRStation] {
+        return getAllStations(of: self)
+    }
+
+    var allLineStations: [MTRLineStation] {
+        return self.allStations.map { MTRLineStation(line: self, verifiedStation: $0) }
+    }
+
+    func destinationName(for direction: Direction) -> String {
         switch direction {
-        case .up:
-            return "寶琳/康城"
-        case .down:
-            return "北角"
+        case .up:   return "寶琳/康城"
+        case .down: return "北角"
         }
     }
 }
 
-extension MTRStation: RawRepresentable {
+
+private func getAllStations(of line: MTRLine) -> [MTRStation] {
+    switch line {
+    case .tseungKwanOLine:
+        return [.northPoint, .quarryBay, .yauTong, .tiuKengLeng, .tseungKwanO, .hangHau, .poLam, .lohasPark]
+    }
+}
+
+
+struct MTRLineStation: Hashable {
+    let line: MTRLine
+    let station: MTRStation
+    init?(line: MTRLine, station: MTRStation) {
+        guard getAllStations(of: line).contains(station) else { return nil }
+        self.line = line
+        self.station = station
+    }
+
+    fileprivate init(line: MTRLine, verifiedStation: MTRStation) {
+        self.line = line
+        self.station = verifiedStation
+    }
+}
+
+extension MTRLineStation: RawRepresentable {
     typealias RawValue = String
     init?(rawValue: String) {
         let codes = rawValue.components(separatedBy: "-")
-        guard codes.count == 2 else { return nil }
-        switch codes[0] {
-        case "TKL":
-            guard let tklStation = TseungKwanOLineStation(rawValue: codes[1]) else { return nil }
-            self = .tko(tklStation)
-        default:
-            return nil
-        }
+        guard codes.count == 2, let line = MTRLine(rawValue: codes[0]), let station = MTRStation(rawValue: codes[1]) else { return nil }
+        self.init(line: line, station: station)
     }
 
     var rawValue: String {
-        switch self {
-        case .tko(let station):
-            return ["TKL", station.rawValue].joined(separator: "-")
-        }
-    }
-
-    var lineCode: String {
-        return self.rawValue.components(separatedBy: "-")[0]
-    }
-
-    var stationCode: String {
-        return self.rawValue.components(separatedBy: "-")[1]
-    }
-
-    var lineStationCode: String {
-        return [lineCode, stationCode].joined(separator: "-")
+        return [line.rawValue, station.rawValue].joined(separator: "-")
     }
 }
 
-enum MTRLineDirection: String {
-    case up     = "UP"
-    case down   = "DOWN"
-}
 
 struct DepartureInfo {
     let destinationCode: String
     let timestamp: TimeInterval
 
-    var destinationName: String? {
-        return TseungKwanOLineStation(rawValue: destinationCode)?.name
+    var destination: MTRStation? {
+        return MTRStation(rawValue: destinationCode)
     }
 }

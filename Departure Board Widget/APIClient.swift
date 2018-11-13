@@ -58,11 +58,11 @@ class APIClient {
 
 
 extension APIClient {
-    func request(station: MTRStation, direction: MTRLineDirection, completion: @escaping (Result<[DepartureInfo]>) -> Void) {
+    func request(lineStation: MTRLineStation, direction: MTRLine.Direction, completion: @escaping (Result<[DepartureInfo]>) -> Void) {
         let originalUrl: URL = {
             let queries: [String: String] = [
-                "line": station.lineCode,
-                "station":  station.stationCode,
+                "line": lineStation.line.rawValue,
+                "station": lineStation.station.rawValue,
                 "language": LANGUAGE,
                 "date": apiRequestDateFormatter.string(from: Date())
             ]
@@ -87,7 +87,7 @@ extension APIClient {
                         completion(.failure(error))
 
                     case .success(let dict):
-                        let array = JSON(dict)["data"][station.lineStationCode][direction.rawValue].arrayValue
+                        let array = JSON(dict)["data"][lineStation.rawValue][direction.rawValue].arrayValue
                         let infoArray: [DepartureInfo] = array.compactMap {
                             guard let dest = $0["dest"].string, let time = $0["time"].string, let timestamp = apiResultDateFormatter.date(from: time)?.timeIntervalSince1970 else { return nil }
                             return DepartureInfo(destinationCode: dest, timestamp: timestamp)

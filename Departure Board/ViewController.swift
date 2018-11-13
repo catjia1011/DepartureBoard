@@ -10,8 +10,8 @@ import UIKit
 
 class ViewController: UITableViewController {
 
-    let stations: [MTRStation] = TseungKwanOLineStation.allCases.reversed().map { .tko($0) }
-    var selected = Set<MTRStation>()
+    let lineStations: [MTRLineStation] = MTRLine.tseungKwanOLine.allLineStations
+    var selected = Set<MTRLineStation>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,27 +37,27 @@ class ViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stations.count
+        return lineStations.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(cellType: UITableViewCell.self, for: indexPath)
-        let station = stations[indexPath.row]
-        cell.textLabel?.text = station.name
-        cell.accessoryType = selected.contains(station) ? .checkmark : .none
+        let lineStation = lineStations[indexPath.row]
+        cell.textLabel?.text = lineStation.station.name
+        cell.accessoryType = selected.contains(lineStation) ? .checkmark : .none
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let station = stations[indexPath.row]
-        if selected.contains(station) {
-            selected.remove(station)
+        let lineStation = lineStations[indexPath.row]
+        if selected.contains(lineStation) {
+            selected.remove(lineStation)
         } else {
-            selected.insert(station)
+            selected.insert(lineStation)
         }
 
-        AppSettings.setStations(Set(self.stations.filter { selected.contains($0) }))
+        AppSettings.setStations(Set(self.lineStations.filter { selected.contains($0) }))
     }
 
 

@@ -18,7 +18,7 @@ class AppSettings {
     static let stationListDidUpdate = Notification.Name(rawValue: "AppSettingsStationListDidUpdate")
 
     // MAX is 3
-    static func setStations(_ stations: Set<MTRStation>) {
+    static func setStations(_ stations: Set<MTRLineStation>) {
         sharedUserDefaults?.set(stations.map { $0.rawValue }, forKey: SETTINGS_KEY)
         sharedUserDefaults?.synchronize()
         DispatchQueue.main.async {
@@ -26,7 +26,7 @@ class AppSettings {
         }
     }
 
-    static func getSettings() -> Set<MTRStation> {
-        return Set((sharedUserDefaults?.array(forKey: SETTINGS_KEY) as? [String] ?? []).compactMap { MTRStation(rawValue: $0) })
+    static func getSettings() -> Set<MTRLineStation> {
+        return Set((sharedUserDefaults?.array(forKey: SETTINGS_KEY) as? [String] ?? []).compactMap { MTRLineStation(rawValue: $0) })
     }
 }

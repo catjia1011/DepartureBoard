@@ -12,11 +12,12 @@ import NotificationCenter
 class DepartureWidgetController: UIViewController, NCWidgetProviding {
 
     let selected = AppSettings.getSettings()
-    let stations: [MTRStation] = TseungKwanOLineStation.allCases.reversed().map { .tko($0) }
-    lazy var vcs: [DepartureTableViewController] = stations.compactMap { (station) in
-        guard selected.contains(station) else { return nil }
-        let direction: MTRLineDirection = (station == .tko(.lohasPark) || station == .tko(.poLam)) ? .down : .up
-        return DepartureTableViewController(station: station, direction: direction)
+    let lineStations: [MTRLineStation] = MTRLine.tseungKwanOLine.allLineStations
+    lazy var vcs: [DepartureTableViewController] = lineStations.compactMap { (lineStation) in
+        guard selected.contains(lineStation) else { return nil }
+        let station = lineStation.station
+        let direction: MTRLine.Direction = (station == .lohasPark || station == .poLam) ? .down : .up
+        return DepartureTableViewController(lineStation: lineStation, direction: direction)
     }
 
     override func viewDidLoad() {

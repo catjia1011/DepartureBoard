@@ -16,12 +16,12 @@ class DepartureTableViewController: UITableViewController {
 
     private let loadingIndicator = UIActivityIndicatorView(style: .gray)
 
-    let station: MTRStation, direction: MTRLineDirection
-    init(station: MTRStation, direction: MTRLineDirection) {
-        self.station = station
+    let lineStation: MTRLineStation, direction: MTRLine.Direction
+    init(lineStation: MTRLineStation, direction: MTRLine.Direction) {
+        self.lineStation = lineStation
         self.direction = direction
         super.init(style: .plain)
-        self.title = self.station.name
+        self.title = lineStation.station.name
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,7 +42,7 @@ class DepartureTableViewController: UITableViewController {
         tableHeader.backgroundColor = UIColor.white.withAlphaComponent(LIGHT_ALPHA)
 
         let titleLabel = UILabel()
-        titleLabel.text = "\(station.name) → \(station.destinationName(for: direction))"
+        titleLabel.text = "\(lineStation.station.name) → \(lineStation.line.destinationName(for: direction))"
         titleLabel.font = .systemFont(ofSize: 11, weight: .bold)
         titleLabel.textAlignment = .center
         titleLabel.textColor = UIColor.black.withAlphaComponent(0.9)
@@ -63,7 +63,7 @@ class DepartureTableViewController: UITableViewController {
 
     func fetchData(completion: @escaping () -> Void) {
         self.loadingIndicator.startAnimating()
-        APIClient.shared.request(station: self.station, direction: self.direction) { [weak self] (result) in
+        APIClient.shared.request(lineStation: self.lineStation, direction: self.direction) { [weak self] (result) in
             self?.loadingIndicator.stopAnimating()
             completion()
 
@@ -98,7 +98,7 @@ extension DepartureTableViewController {
         }
 
         let departureInfo = departureInfoArray[indexPath.row]
-        cell.textLabel?.text = departureInfo.destinationName ?? "--"
+        cell.textLabel?.text = departureInfo.destination?.name ?? "--"
         cell.detailTextLabel?.text = dateFormatter.string(from: Date(timeIntervalSince1970: departureInfo.timestamp))
         return cell
     }
