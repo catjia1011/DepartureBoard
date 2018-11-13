@@ -10,6 +10,7 @@ import UIKit
 
 enum MTRLine: String, CaseIterable {
     case tseungKwanOLine = "TKL"
+    case westRainLine    = "WRL"
 }
 
 extension MTRLine {
@@ -22,6 +23,8 @@ extension MTRLine {
         switch self {
         case .tseungKwanOLine:
             return "將軍澳綫"
+        case .westRainLine:
+            return "西鐵綫"
         }
     }
 
@@ -29,6 +32,8 @@ extension MTRLine {
         switch self {
         case .tseungKwanOLine:
             return UIColor(red: 125.0 / 255, green: 73.0 / 255, blue: 157.0 / 255, alpha: 1)
+        case .westRainLine:
+            return UIColor(red: 182.0 / 255, green: 0.0 / 255, blue: 141.0 / 255, alpha: 1)
         }
     }
 
@@ -40,6 +45,12 @@ extension MTRLine {
                 .lohasPark: .down,
                 .poLam: .down,
             ]
+
+        case .westRainLine:
+            return [
+                .hungHom: .up,
+                .tuenMun: .down,
+            ]
         }
     }
 
@@ -47,6 +58,9 @@ extension MTRLine {
         switch self {
         case .tseungKwanOLine:
             return [.northPoint, .quarryBay, .yauTong, .tiuKengLeng, .tseungKwanO, .hangHau, .poLam, .lohasPark]
+
+        case .westRainLine:
+            return [.hungHom, .eastTsimShaTsui, .austin, .namCheong, .meiFoo, .tsuenWanWest, .kamSheungRoad, .yuenLong, .longPing, .tinShuiWai, .siuHong, .tuenMun]
         }
     }
 
@@ -56,6 +70,12 @@ extension MTRLine {
             switch direction {
             case .up:   return withRoutingWord ? "往寶琳/康城" : "寶琳/康城"
             case .down: return withRoutingWord ? "往北角" : "北角"
+            }
+
+        case .westRainLine:
+            switch direction {
+            case .up:   return withRoutingWord ? "往屯門" : "屯門"
+            case .down: return withRoutingWord ? "往紅磡" : "紅磡"
             }
         }
     }

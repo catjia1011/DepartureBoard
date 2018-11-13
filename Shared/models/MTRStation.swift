@@ -18,6 +18,19 @@ enum MTRStation: String {
     case poLam          = "POA"
     case lohasPark      = "LHP"
 
+    case tuenMun          = "TUM"
+    case siuHong          = "SIH"
+    case tinShuiWai       = "TIS"
+    case longPing         = "LOP"
+    case yuenLong         = "YUL"
+    case kamSheungRoad    = "KSR"
+    case tsuenWanWest     = "TWW"
+    case meiFoo           = "MEF"
+    case namCheong        = "NAC"
+    case austin           = "AUS"
+    case eastTsimShaTsui  = "ETS"
+    case hungHom          = "HUH"
+
     var name: String {
         switch self {
         case .northPoint:   return "北角"
@@ -28,6 +41,19 @@ enum MTRStation: String {
         case .hangHau:      return "坑口"
         case .poLam:        return "寶琳"
         case .lohasPark:    return "康城"
+
+        case .tuenMun:          return "屯門"
+        case .siuHong:          return "兆康"
+        case .tinShuiWai:       return "天水圍"
+        case .longPing:         return "朗屏"
+        case .yuenLong:         return "元朗"
+        case .kamSheungRoad:    return "錦上路"
+        case .tsuenWanWest:     return "荃灣西"
+        case .meiFoo:           return "美孚"
+        case .namCheong:        return "南昌"
+        case .austin:           return "柯士甸"
+        case .eastTsimShaTsui:  return "尖東"
+        case .hungHom:          return "紅磡"
         }
     }
 }
