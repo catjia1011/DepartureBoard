@@ -63,13 +63,3 @@ extension MTRLine {
 
 extension MTRLine.Direction: Codable {}
 extension MTRLine: Codable {}
-
-
-// MARK: -
-private func getAllStations(of line: MTRLine) -> [MTRStation] {
-    switch line {
-    case .tseungKwanOLine:
-        return [.northPoint, .quarryBay, .yauTong, .tiuKengLeng, .tseungKwanO, .hangHau, .poLam, .lohasPark]
-    }
-}
-
