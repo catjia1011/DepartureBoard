@@ -88,20 +88,17 @@ class StationListCell: UITableViewCell {
 
 private class AddButton: UIButton {
     static let defaultHeight = 28 as CGFloat
+    private let disabledColor: UIColor = .lightGray
 
     override var isSelected: Bool {
         didSet {
-            if isSelected {
-                self.layer.borderWidth = 0
-                self.layer.borderColor = UIColor.clear.cgColor
-                self.layer.masksToBounds = true
-                self.backgroundColor = .appleBlue
-            } else {
-                self.layer.borderWidth = 1
-                self.layer.borderColor = UIColor.appleBlue.cgColor
-                self.layer.masksToBounds = false
-                self.backgroundColor = .clear
-            }
+            self.updateUI()
+        }
+    }
+
+    override var isEnabled: Bool {
+        didSet {
+            self.updateUI()
         }
     }
 
@@ -113,14 +110,30 @@ private class AddButton: UIButton {
         self.layer.cornerRadius = 4
         self.titleLabel?.font = .systemFont(ofSize: 13)
         self.setTitleColor(.appleBlue, for: .normal)
+        self.setTitleColor(disabledColor, for: .disabled)
         self.setTitleColor(.white, for: .selected)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     func configure(line: MTRLine?) {
         self.setTitle(line?.destinationName(for: direction, withRoutingWord: true), for: .normal)
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    private func updateUI() {
+        let color: UIColor = isEnabled ? .appleBlue : disabledColor
+        if isSelected {
+            self.layer.borderWidth = 0
+            self.layer.borderColor = UIColor.clear.cgColor
+            self.layer.masksToBounds = true
+            self.backgroundColor = color
+        } else {
+            self.layer.borderWidth = 1
+            self.layer.borderColor = color.cgColor
+            self.layer.masksToBounds = false
+            self.backgroundColor = .clear
+        }
     }
 }
