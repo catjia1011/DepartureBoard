@@ -27,7 +27,7 @@ class MainViewController: UITableViewController {
         super.viewDidLoad()
 
         self.title = "當前顯示車站"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(didTapEditButtonItem(_:)))
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
 
         self.tableView.register(cellType: UITableViewCell.self)
         self.tableView.tableFooterView = UIView()
@@ -93,12 +93,51 @@ extension MainViewController {
             self.present(vc, animated: true, completion: nil)
         }
     }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        switch sectionValues[indexPath.section] {
+        case .settings:
+            return true
+        case .edit:
+            return false
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        guard sourceIndexPath.section == destinationIndexPath.section && sectionValues[sourceIndexPath.section] == .settings else {
+            assertionFailure("unexpected")
+            self.reloadData()
+            return
+        }
+
+        var newSettings = self.settings
+        let item = newSettings.remove(at: sourceIndexPath.row)
+        newSettings.insert(item, at: destinationIndexPath.row)
+        AppSettings.setStationsAndDirections(newSettings)
+        self.reloadData()
+    }
+
+    override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+        if sectionValues[proposedDestinationIndexPath.section] != .settings {
+            return sourceIndexPath
+        }
+        return proposedDestinationIndexPath
+    }
 }
 
 extension MainViewController {
-    @objc private func didTapEditButtonItem(_ sender: Any) {
-    }
-
     @objc private func didReceiveNotification(_ notification: Notification) {
         if notification.name == AppSettings.stationListDidUpdate {
             self.reloadData()
