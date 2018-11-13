@@ -42,7 +42,7 @@ class DepartureTableViewController: UITableViewController {
         tableHeader.backgroundColor = UIColor.white.withAlphaComponent(LIGHT_ALPHA)
 
         let titleLabel = UILabel()
-        titleLabel.text = self.station.name
+        titleLabel.text = "\(station.name) → \(station.destinationName(for: direction))"
         titleLabel.font = .systemFont(ofSize: 11, weight: .bold)
         titleLabel.textAlignment = .center
         titleLabel.textColor = UIColor.black.withAlphaComponent(0.9)

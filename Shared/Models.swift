@@ -41,6 +41,15 @@ enum MTRStation: Hashable {
             return station.name
         }
     }
+
+    func destinationName(for direction: MTRLineDirection) -> String {
+        switch direction {
+        case .up:
+            return "寶琳/康城"
+        case .down:
+            return "北角"
+        }
+    }
 }
 
 extension MTRStation: RawRepresentable {
