@@ -37,33 +37,6 @@ extension MTRLine {
         }
     }
 
-    var endStations: [MTRStation: MTRLine.Direction] {
-        switch self {
-        case .tseungKwanOLine:
-            return [
-                .northPoint: .up,
-                .lohasPark: .down,
-                .poLam: .down,
-            ]
-
-        case .westRainLine:
-            return [
-                .hungHom: .up,
-                .tuenMun: .down,
-            ]
-        }
-    }
-
-    var allStations: [MTRStation] {
-        switch self {
-        case .tseungKwanOLine:
-            return [.northPoint, .quarryBay, .yauTong, .tiuKengLeng, .tseungKwanO, .hangHau, .poLam, .lohasPark]
-
-        case .westRainLine:
-            return [.hungHom, .eastTsimShaTsui, .austin, .namCheong, .meiFoo, .tsuenWanWest, .kamSheungRoad, .yuenLong, .longPing, .tinShuiWai, .siuHong, .tuenMun]
-        }
-    }
-
     func destinationName(for direction: Direction, withRoutingWord: Bool = false) -> String {
         switch self {
         case .tseungKwanOLine:
