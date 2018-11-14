@@ -12,9 +12,8 @@ import NotificationCenter
 class DepartureWidgetController: UIViewController, NCWidgetProviding {
 
     let settings = AppSettings.getSettings()
-    let lineStations: [MTRLineStation] = MTRLineCode.tseungKwanOLine.allLineStations
     lazy var vcs: [DepartureTableViewController] = settings.compactMap {
-        DepartureTableViewController(lineStation: $0.lineStation, direction: $0.direction)
+        DepartureTableViewController(station: $0.station, direction: $0.direction)
     }
 
     override func viewDidLoad() {

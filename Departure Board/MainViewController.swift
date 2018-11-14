@@ -75,8 +75,8 @@ extension MainViewController {
         case .settings:
             let cell = tableView.dequeue(cellType: ValueTableViewCell.self, for: indexPath)
             let setting = settings[indexPath.row]
-            let station = setting.lineStation.station
-            let line = setting.lineStation.line
+            let station = setting.station.code
+            let line = MTRLine.withCode(setting.station.lineCode)
             let direction = setting.direction
             cell.textLabel?.text = station.name
             cell.textLabel?.textColor = .black

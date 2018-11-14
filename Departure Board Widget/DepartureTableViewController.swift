@@ -16,12 +16,12 @@ class DepartureTableViewController: UITableViewController {
 
     private let loadingIndicator = UIActivityIndicatorView(style: .gray)
 
-    let lineStation: MTRLineStation, direction: MTRLineCode.Direction
-    init(lineStation: MTRLineStation, direction: MTRLineCode.Direction) {
-        self.lineStation = lineStation
+    let station: MTRStation, direction: MTRLine.Direction
+    init(station: MTRStation, direction: MTRLine.Direction) {
+        self.station = station
         self.direction = direction
         super.init(style: .plain)
-        self.title = lineStation.station.name
+        self.title = station.name
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,7 +42,7 @@ class DepartureTableViewController: UITableViewController {
         tableHeader.backgroundColor = UIColor.white.withAlphaComponent(LIGHT_ALPHA)
 
         let titleLabel = UILabel()
-        titleLabel.text = "\(lineStation.station.name) → \(lineStation.line.destinationName(for: direction))"
+        titleLabel.text = "\(station.name) → \(MTRLine.withCode(station.lineCode).destinationName(for: direction))"
         titleLabel.font = .systemFont(ofSize: 11, weight: .bold)
         titleLabel.textAlignment = .center
         titleLabel.textColor = UIColor.black.withAlphaComponent(0.9)
@@ -63,7 +63,7 @@ class DepartureTableViewController: UITableViewController {
 
     func fetchData(completion: @escaping () -> Void) {
         self.loadingIndicator.startAnimating()
-        APIClient.shared.request(lineStation: self.lineStation, direction: self.direction) { [weak self] (result) in
+        APIClient.shared.request(station: self.station, direction: self.direction) { [weak self] (result) in
             self?.loadingIndicator.stopAnimating()
             completion()
 

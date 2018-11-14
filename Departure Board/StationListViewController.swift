@@ -10,7 +10,7 @@ import UIKit
 
 class StationListViewController: UITableViewController {
 
-    let lines = MTRLineCode.allCases
+    let lines = MTRLine.allLines
     var settings: [AppSettings.StationAndDirection] = []
 
     override func viewDidLoad() {
@@ -54,7 +54,7 @@ extension StationListViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lines[section].allLineStations.count
+        return lines[section].stations.count
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -63,10 +63,10 @@ extension StationListViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(cellType: StationListCell.self, for: indexPath)
-        let lineStation = lines[indexPath.section].allLineStations[indexPath.row]
-        let availableDirections = lineStation.availableDirections
-        let selectedDirections = self.settings.filter { $0.lineStation == lineStation }.map { $0.direction }
-        cell.setLineStation(lineStation, availableDirections: availableDirections, selectedDirections: selectedDirections)
+        let station = lines[indexPath.section].stations[indexPath.row]
+        let availableDirections = station.availableDirections
+        let selectedDirections = self.settings.filter { $0.station == station }.map { $0.direction }
+        cell.setLineStation(station, availableDirections: availableDirections, selectedDirections: selectedDirections)
         cell.delegate = self
         return cell
     }
@@ -74,10 +74,10 @@ extension StationListViewController {
 
 
 extension StationListViewController: StationListCellDelegate {
-    func stationListCell(_ cell: StationListCell, didUpdateSelectStatus isSelected: Bool, for direction: MTRLineCode.Direction) {
+    func stationListCell(_ cell: StationListCell, didUpdateSelectStatus isSelected: Bool, for direction: MTRLine.Direction) {
         guard let indexPath = self.tableView.indexPath(for: cell) else { return }
-        let lineStation = lines[indexPath.section].allLineStations[indexPath.row]
-        let setting = AppSettings.StationAndDirection(lineStation: lineStation, direction: direction)
+        let station = lines[indexPath.section].stations[indexPath.row]
+        let setting = AppSettings.StationAndDirection(station: station, direction: direction)
 
         var newSettings = self.settings
         if let index = newSettings.index(of: setting) {

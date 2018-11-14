@@ -30,7 +30,9 @@ enum MTRStationCode: String {
     case austin           = "AUS"
     case eastTsimShaTsui  = "ETS"
     case hungHom          = "HUH"
+}
 
+extension MTRStationCode {
     var name: String {
         switch self {
         case .northPoint:   return "北角"

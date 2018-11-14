@@ -9,7 +9,7 @@
 import UIKit
 
 protocol StationListCellDelegate: NSObjectProtocol {
-    func stationListCell(_ cell: StationListCell, didUpdateSelectStatus isSelected: Bool, for direction: MTRLineCode.Direction) -> Void
+    func stationListCell(_ cell: StationListCell, didUpdateSelectStatus isSelected: Bool, for direction: MTRLine.Direction) -> Void
 }
 
 class StationListCell: UITableViewCell {
@@ -17,7 +17,7 @@ class StationListCell: UITableViewCell {
     weak var delegate: StationListCellDelegate?
 
     private let stackView = UIStackView()
-    private let buttons: [AddButton] = MTRLineCode.Direction.allCases.map { AddButton(direction: $0) }
+    private let buttons: [AddButton] = MTRLine.Direction.allCases.map { AddButton(direction: $0) }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -57,11 +57,11 @@ class StationListCell: UITableViewCell {
         textLabel.frame.size.width -= (stackView.frame.width + spacing)
     }
 
-    func setLineStation(_ lineStation: MTRLineStation, availableDirections: [MTRLineCode.Direction], selectedDirections: [MTRLineCode.Direction]) {
-        self.textLabel?.text = lineStation.station.name
+    func setLineStation(_ station: MTRStation, availableDirections: [MTRLine.Direction], selectedDirections: [MTRLine.Direction]) {
+        self.textLabel?.text = station.name
         for button in buttons {
             button.isEnabled = availableDirections.contains(button.direction)
-            button.configure(line: lineStation.line)
+            button.configure(line: MTRLine.withCode(station.lineCode))
             button.isSelected = selectedDirections.contains(button.direction)
         }
     }
@@ -104,8 +104,8 @@ private class AddButton: UIButton {
 
     private var lineColor: UIColor?
 
-    let direction: MTRLineCode.Direction
-    init(direction: MTRLineCode.Direction) {
+    let direction: MTRLine.Direction
+    init(direction: MTRLine.Direction) {
         self.direction = direction
         super.init(frame: .zero)
 
@@ -119,7 +119,7 @@ private class AddButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(line: MTRLineCode?) {
+    func configure(line: MTRLine?) {
         self.setTitle(line?.destinationName(for: direction, withRoutingWord: true), for: .normal)
         self.lineColor = line?.color
     }
