@@ -9,15 +9,15 @@
 import Foundation
 
 struct MTRLineStation {
-    let line: MTRLine
-    let station: MTRStation
-    private init?(line: MTRLine, station: MTRStation) {
+    let line: MTRLineCode
+    let station: MTRStationCode
+    private init?(line: MTRLineCode, station: MTRStationCode) {
         guard allStationsForLine(line).contains(station) else { return nil }
         self.line = line
         self.station = station
     }
 
-    fileprivate init(line: MTRLine, verifiedStation: MTRStation) {
+    fileprivate init(line: MTRLineCode, verifiedStation: MTRStationCode) {
         self.line = line
         self.station = verifiedStation
     }
@@ -27,7 +27,7 @@ extension MTRLineStation: RawRepresentable {
     typealias RawValue = String
     init?(rawValue: String) {
         let codes = rawValue.components(separatedBy: "-")
-        guard codes.count == 2, let line = MTRLine(rawValue: codes[0]), let station = MTRStation(rawValue: codes[1]) else { return nil }
+        guard codes.count == 2, let line = MTRLineCode(rawValue: codes[0]), let station = MTRStationCode(rawValue: codes[1]) else { return nil }
         self.init(line: line, station: station)
     }
 
@@ -41,16 +41,16 @@ extension MTRLineStation: Codable {}
 
 // MARK: -
 extension MTRLineStation {
-    var availableDirections: [MTRLine.Direction] {
+    var availableDirections: [MTRLineCode.Direction] {
         if let endStationDirection = line.endStations[station] {
             return [endStationDirection]
         }
-        return MTRLine.Direction.allCases
+        return MTRLineCode.Direction.allCases
     }
 }
 
-extension MTRLine {
-    var endStations: [MTRStation: MTRLine.Direction] {
+extension MTRLineCode {
+    var endStations: [MTRStationCode: MTRLineCode.Direction] {
         switch self {
         case .tseungKwanOLine:
             return [
@@ -77,7 +77,7 @@ extension MTRLine {
 }
 
 
-private func allStationsForLine(_ line: MTRLine) -> [MTRStation] {
+private func allStationsForLine(_ line: MTRLineCode) -> [MTRStationCode] {
     switch line {
     case .tseungKwanOLine:
         return [.northPoint, .quarryBay, .yauTong, .tiuKengLeng, .tseungKwanO, .hangHau, .poLam, .lohasPark]
@@ -87,9 +87,9 @@ private func allStationsForLine(_ line: MTRLine) -> [MTRStation] {
     }
 }
 
-private let lineToLineStationsMap: [MTRLine: [MTRLineStation]] = {
-    var dict = [MTRLine: [MTRLineStation]]()
-    for line in MTRLine.allCases {
+private let lineToLineStationsMap: [MTRLineCode: [MTRLineStation]] = {
+    var dict = [MTRLineCode: [MTRLineStation]]()
+    for line in MTRLineCode.allCases {
         let stations = allStationsForLine(line)
         dict[line] = stations.map { MTRLineStation(line: line, verifiedStation: $0) }
     }

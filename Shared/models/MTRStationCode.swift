@@ -1,5 +1,5 @@
 //
-//  MTRStation.swift
+//  MTRStationCode.swift
 //  Departure Board
 //
 //  Created by Cat Jia on 14/11/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum MTRStation: String {
+enum MTRStationCode: String {
     case northPoint     = "NOP"
     case quarryBay      = "QUB"
     case yauTong        = "YAT"
@@ -58,4 +58,4 @@ enum MTRStation: String {
     }
 }
 
-extension MTRStation: Codable {}
+extension MTRStationCode: Codable {}

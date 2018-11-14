@@ -14,7 +14,7 @@ struct DepartureInfo {
 }
 
 extension DepartureInfo {
-    var destination: MTRStation? {
-        return MTRStation(rawValue: destinationCode)
+    var destination: MTRStationCode? {
+        return MTRStationCode(rawValue: destinationCode)
     }
 }

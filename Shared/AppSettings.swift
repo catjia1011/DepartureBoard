@@ -37,7 +37,7 @@ class AppSettings {
 extension AppSettings {
     struct StationAndDirection: Equatable, Codable {
         let lineStation: MTRLineStation
-        let direction: MTRLine.Direction
+        let direction: MTRLineCode.Direction
     }
 }
 

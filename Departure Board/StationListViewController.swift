@@ -10,7 +10,7 @@ import UIKit
 
 class StationListViewController: UITableViewController {
 
-    let lines = MTRLine.allCases
+    let lines = MTRLineCode.allCases
     var settings: [AppSettings.StationAndDirection] = []
 
     override func viewDidLoad() {
@@ -74,7 +74,7 @@ extension StationListViewController {
 
 
 extension StationListViewController: StationListCellDelegate {
-    func stationListCell(_ cell: StationListCell, didUpdateSelectStatus isSelected: Bool, for direction: MTRLine.Direction) {
+    func stationListCell(_ cell: StationListCell, didUpdateSelectStatus isSelected: Bool, for direction: MTRLineCode.Direction) {
         guard let indexPath = self.tableView.indexPath(for: cell) else { return }
         let lineStation = lines[indexPath.section].allLineStations[indexPath.row]
         let setting = AppSettings.StationAndDirection(lineStation: lineStation, direction: direction)

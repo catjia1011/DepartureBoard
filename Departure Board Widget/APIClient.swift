@@ -58,7 +58,7 @@ class APIClient {
 
 
 extension APIClient {
-    func request(lineStation: MTRLineStation, direction: MTRLine.Direction, completion: @escaping (Result<[DepartureInfo]>) -> Void) {
+    func request(lineStation: MTRLineStation, direction: MTRLineCode.Direction, completion: @escaping (Result<[DepartureInfo]>) -> Void) {
         let originalUrl: URL = {
             let queries: [String: String] = [
                 "line": lineStation.line.rawValue,

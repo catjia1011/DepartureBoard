@@ -1,5 +1,5 @@
 //
-//  MTRLine.swift
+//  MTRLineCode.swift
 //  Departure Board
 //
 //  Created by Cat Jia on 14/11/2018.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-enum MTRLine: String, CaseIterable {
+enum MTRLineCode: String, CaseIterable {
     case tseungKwanOLine = "TKL"
     case westRainLine    = "WRL"
 }
 
-extension MTRLine {
+extension MTRLineCode {
     enum Direction: String, CaseIterable {
         case up     = "UP"
         case down   = "DOWN"
@@ -54,5 +54,5 @@ extension MTRLine {
     }
 }
 
-extension MTRLine.Direction: Codable {}
-extension MTRLine: Codable {}
+extension MTRLineCode.Direction: Codable {}
+extension MTRLineCode: Codable {}

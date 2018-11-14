@@ -16,8 +16,8 @@ class DepartureTableViewController: UITableViewController {
 
     private let loadingIndicator = UIActivityIndicatorView(style: .gray)
 
-    let lineStation: MTRLineStation, direction: MTRLine.Direction
-    init(lineStation: MTRLineStation, direction: MTRLine.Direction) {
+    let lineStation: MTRLineStation, direction: MTRLineCode.Direction
+    init(lineStation: MTRLineStation, direction: MTRLineCode.Direction) {
         self.lineStation = lineStation
         self.direction = direction
         super.init(style: .plain)
