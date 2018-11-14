@@ -1,0 +1,87 @@
+/* 機場 */
+"AIR" = "Airport";
+
+/* 柯士甸 */
+"AUS" = "Austin";
+
+/* 博覽館 */
+"AWE" = "Asia-World Expo";
+
+/* 尖東 */
+"ETS" = "East Tsim Sha Tsui";
+
+/* 坑口 */
+"HAH" = "Hang Hau";
+
+/* 香港 */
+"HOK" = "Hong Kong";
+
+/* 紅磡 */
+"HUH" = "Hung Hom";
+
+/* 九龍 */
+"KOW" = "Kowloon";
+
+/* 錦上路 */
+"KSR" = "Kam Sheung Road";
+
+/* 荔景 */
+"LAK" = "Lai King";
+
+/* 康城 */
+"LHP" = "LOHAS Park";
+
+/* 朗屏 */
+"LOP" = "Long Ping";
+
+/* 美孚 */
+"MEF" = "Mei Foo";
+
+/* 南昌 */
+"NAC" = "Nam Cheong";
+
+/* 北角 */
+"NOP" = "North Point";
+
+/* 奧運 */
+"OLY" = "Olympic";
+
+/* 寶琳 */
+"POA" = "Po Lam";
+
+/* 鰂魚涌 */
+"QUB" = "Quarry Bay";
+
+/* 兆康 */
+"SIH" = "Siu Hong";
+
+/* 欣澳 */
+"SUN" = "Sunny Bay";
+
+/* 調景嶺 */
+"TIK" = "Tiu Keng Leng";
+
+/* 天水圍 */
+"TIS" = "Tin Shui Wai";
+
+/* 將軍澳 */
+"TKO" = "Tseung Kwan O";
+
+/* 青衣 */
+"TSY" = "Tsing Yi";
+
+/* 東涌 */
+"TUC" = "Tung Chung";
+
+/* 屯門 */
+"TUM" = "Tuen Mun";
+
+/* 荃灣西 */
+"TWW" = "Tsuen Wan West";
+
+/* 油塘 */
+"YAT" = "Yau Tong";
+
+/* 元朗 */
+"YUL" = "Yuen Long";
+
