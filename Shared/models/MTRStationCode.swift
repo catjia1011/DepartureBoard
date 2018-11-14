@@ -30,6 +30,15 @@ enum MTRStationCode: String {
     case austin           = "AUS"
     case eastTsimShaTsui  = "ETS"
     case hungHom          = "HUH"
+
+    case hongKong         = "HOK"
+    case kowloon          = "KOW"
+    case olympic          = "OLY"
+//  case namCheong        = "NAC"
+    case laiKing          = "LAK"
+    case tsingYi          = "TSY"
+    case sunnyBay         = "SUN"
+    case tungChung        = "TUC"
 }
 
 extension MTRStationCode {
@@ -56,6 +65,15 @@ extension MTRStationCode {
         case .austin:           return "柯士甸"
         case .eastTsimShaTsui:  return "尖東"
         case .hungHom:          return "紅磡"
+
+        case .hongKong:         return "香港"
+        case .kowloon:          return "九龍"
+        case .olympic:          return "奧運"
+//      case .namCheong:        return "南昌"
+        case .laiKing:          return "荔景"
+        case .tsingYi:          return "青衣"
+        case .sunnyBay:         return "欣澳"
+        case .tungChung:        return "東涌"
         }
     }
 }

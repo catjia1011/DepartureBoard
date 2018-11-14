@@ -11,6 +11,7 @@ import UIKit
 enum MTRLineCode: String {
     case TKL // Tseung KwanO Line
     case WRL // West Rail Line
+    case TCL // Tung Chung Line
 }
 
 extension MTRLineCode {
@@ -20,6 +21,8 @@ extension MTRLineCode {
             return "將軍澳綫"
         case .WRL:
             return "西鐵綫"
+        case .TCL:
+            return "東涌綫"
         }
     }
 }
