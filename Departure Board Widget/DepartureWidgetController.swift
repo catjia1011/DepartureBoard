@@ -23,7 +23,7 @@ class DepartureWidgetController: UIViewController, NCWidgetProviding {
             let openSettingsButton = UIButton()
             openSettingsButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
             openSettingsButton.layer.cornerRadius = 6
-            openSettingsButton.setTitle("添加 MTR 站點", for: .normal)
+            openSettingsButton.setTitle(NSLocalizedString("ui.add_mtr_stations", value: "Add MTR Stations", comment: "添加 MTR 站點"), for: .normal)
             openSettingsButton.setTitleColor(.white, for: .normal)
             openSettingsButton.titleLabel?.font = .systemFont(ofSize: 14)
             openSettingsButton.backgroundColor = UIColor(red:0.71, green:0.13, blue:0.29, alpha:1.0)

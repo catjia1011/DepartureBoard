@@ -89,8 +89,14 @@ extension MTRLine {
         ],
         destinationNameBlock: { (direction, withRoutingWord) in
             switch direction {
-            case .up:   return withRoutingWord ? "往寶琳/康城" : "寶琳/康城"
-            case .down: return withRoutingWord ? "往北角" : "北角"
+            case .up:
+                return withRoutingWord
+                    ? NSLocalizedString("direction.to_POA_LHP", value: "To Po Lam / LHP", comment: "往寶琳/康城")
+                    : NSLocalizedString("direction.POA_LHP", value: "Po Lam / LHP", comment: "寶琳/康城")
+            case .down:
+                return withRoutingWord
+                    ? NSLocalizedString("direction.to_NOP", value: "To North Point", comment: "往北角")
+                    : NSLocalizedString("direction.NOP", value: "North Point", comment: "北角")
             }
     })
 
@@ -106,8 +112,14 @@ extension MTRLine {
         ],
         destinationNameBlock: { (direction, withRoutingWord) in
             switch direction {
-            case .up:   return withRoutingWord ? "往屯門" : "屯門"
-            case .down: return withRoutingWord ? "往紅磡" : "紅磡"
+            case .up:
+                return withRoutingWord
+                    ? NSLocalizedString("direction.to_TUM", value: "To Tuen Mun", comment: "往屯門")
+                    : NSLocalizedString("direction.TUM", value: "Tuen Mun", comment: "屯門")
+            case .down:
+                return withRoutingWord
+                    ? NSLocalizedString("direction.to_HUH", value: "To Hung Hom", comment: "往紅磡")
+                    : NSLocalizedString("direction.HUH", value: "Hung Hom", comment: "紅磡")
             }
     })
 
@@ -123,8 +135,14 @@ extension MTRLine {
         ],
         destinationNameBlock: { (direction, withRoutingWord) in
             switch direction {
-            case .up:   return withRoutingWord ? "往東涌" : "東涌"
-            case .down: return withRoutingWord ? "往香港" : "香港"
+            case .up:
+                return withRoutingWord
+                    ? NSLocalizedString("direction.to_TUC", value: "To Tung Chung", comment: "往東涌")
+                    : NSLocalizedString("direction.TUC", value: "Tung Chung", comment: "東涌")
+            case .down:
+                return withRoutingWord
+                    ? NSLocalizedString("direction.to_HOK", value: "To Hong Kong", comment: "往香港")
+                    : NSLocalizedString("direction.HOK", value: "Hong Kong", comment: "香港")
             }
     })
 
@@ -140,8 +158,14 @@ extension MTRLine {
         ],
         destinationNameBlock: { (direction, withRoutingWord) in
             switch direction {
-            case .up:   return withRoutingWord ? "往機場/博覽館" : "機場/博覽館"
-            case .down: return withRoutingWord ? "往香港" : "香港"
+            case .up:
+                return withRoutingWord
+                    ? NSLocalizedString("direction.to_AIR_AWE", value: "To Airport / Expo", comment: "往機場/博覽館")
+                    : NSLocalizedString("direction.AIR_AWE", value: "Airport / Expo", comment: "機場/博覽館")
+            case .down:
+                return withRoutingWord
+                    ? NSLocalizedString("direction.to_HOK", value: "To Hong Kong", comment: "往香港")
+                    : NSLocalizedString("direction.HOK", value: "Hong Kong", comment: "香港")
             }
     })
 }

@@ -19,13 +19,13 @@ extension MTRLineCode {
     var name: String {
         switch self {
         case .TKL:
-            return "將軍澳綫"
+            return NSLocalizedString("line.TKL", value: "Tseung KwanO Line", comment: "將軍澳綫")
         case .WRL:
-            return "西鐵綫"
+            return NSLocalizedString("line.WRL", value: "West Rail Line", comment: "西鐵綫")
         case .TCL:
-            return "東涌綫"
+            return NSLocalizedString("line.TCL", value: "Tung Chung Line", comment: "東涌綫")
         case .AEL:
-            return "機場快綫"
+            return NSLocalizedString("line.AEL", value: "Airport Express", comment: "機場快綫")
         }
     }
 }
