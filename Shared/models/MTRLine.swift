@@ -10,15 +10,15 @@ import UIKit
 
 struct MTRLine {
     let code: MTRLineCode
-    let stations: [MTRStation]
     let color: UIColor
+    let stations: [MTRStation]
 
     fileprivate let endStations: [MTRStationCode: Direction]
 
     private typealias DestinationNameBlock = (_ direction: Direction, _ withRoutingWord: Bool) -> String
     private let destinationNameBlock: DestinationNameBlock
 
-    private init(code lineCode: MTRLineCode, stationCodes: [MTRStationCode], color: UIColor, endStations: [MTRStationCode: Direction], destinationNameBlock: @escaping DestinationNameBlock) {
+    private init(code lineCode: MTRLineCode, color: UIColor, stationCodes: [MTRStationCode], endStations: [MTRStationCode: Direction], destinationNameBlock: @escaping DestinationNameBlock) {
         self.code = lineCode
         self.stations = stationCodes.map { MTRStation(line: lineCode, verifiedStationCode: $0) }
         self.color = color
@@ -26,42 +26,6 @@ struct MTRLine {
         self.destinationNameBlock = destinationNameBlock
     }
 }
-
-
-// MARK: -
-extension MTRLine {
-    static let tseungKwanOLine = MTRLine(
-        code: .TKL,
-        stationCodes: [.northPoint, .quarryBay, .yauTong, .tiuKengLeng, .tseungKwanO, .hangHau, .poLam, .lohasPark],
-        color: UIColor(red: 125.0 / 255, green: 73.0 / 255, blue: 157.0 / 255, alpha: 1),
-        endStations: [
-            .northPoint: .up,
-            .lohasPark: .down,
-            .poLam: .down
-        ], destinationNameBlock: { (direction, withRoutingWord) in
-            switch direction {
-            case .up:   return withRoutingWord ? "往寶琳/康城" : "寶琳/康城"
-            case .down: return withRoutingWord ? "往北角" : "北角"
-            }
-    })
-
-    static let westRainLine = MTRLine(
-        code: .WRL,
-        stationCodes: [.hungHom, .eastTsimShaTsui, .austin, .namCheong, .meiFoo, .tsuenWanWest, .kamSheungRoad, .yuenLong, .longPing, .tinShuiWai, .siuHong, .tuenMun],
-        color: UIColor(red: 182.0 / 255, green: 0.0 / 255, blue: 141.0 / 255, alpha: 1),
-        endStations: [
-            .hungHom: .up,
-            .tuenMun: .down
-        ], destinationNameBlock: { (direction, withRoutingWord) in
-            switch direction {
-            case .up:   return withRoutingWord ? "往屯門" : "屯門"
-            case .down: return withRoutingWord ? "往紅磡" : "紅磡"
-            }
-    })
-
-    static let allLines: [MTRLine] = [tseungKwanOLine, westRainLine]
-}
-
 
 // MARK: -
 extension MTRLine {
@@ -101,4 +65,45 @@ extension MTRStation {
         }
         return MTRLine.Direction.allCases
     }
+}
+
+
+// MARK: -
+extension MTRLine {
+    static let allLines: [MTRLine] = [tseungKwanOLine, westRainLine]
+
+    static let tseungKwanOLine = MTRLine(
+        code: .TKL,
+        color: UIColor(red: 125.0 / 255, green: 73.0 / 255, blue: 157.0 / 255, alpha: 1),
+        stationCodes: [
+            .northPoint, .quarryBay, .yauTong, .tiuKengLeng, .tseungKwanO, .hangHau, .poLam, .lohasPark
+        ],
+        endStations: [
+            .northPoint: .up,
+            .lohasPark: .down,
+            .poLam: .down
+        ],
+        destinationNameBlock: { (direction, withRoutingWord) in
+            switch direction {
+            case .up:   return withRoutingWord ? "往寶琳/康城" : "寶琳/康城"
+            case .down: return withRoutingWord ? "往北角" : "北角"
+            }
+    })
+
+    static let westRainLine = MTRLine(
+        code: .WRL,
+        color: UIColor(red: 182.0 / 255, green: 0.0 / 255, blue: 141.0 / 255, alpha: 1),
+        stationCodes: [
+            .hungHom, .eastTsimShaTsui, .austin, .namCheong, .meiFoo, .tsuenWanWest, .kamSheungRoad, .yuenLong, .longPing, .tinShuiWai, .siuHong, .tuenMun
+        ],
+        endStations: [
+            .hungHom: .up,
+            .tuenMun: .down
+        ],
+        destinationNameBlock: { (direction, withRoutingWord) in
+            switch direction {
+            case .up:   return withRoutingWord ? "往屯門" : "屯門"
+            case .down: return withRoutingWord ? "往紅磡" : "紅磡"
+            }
+    })
 }
