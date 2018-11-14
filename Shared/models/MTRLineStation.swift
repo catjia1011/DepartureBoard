@@ -11,8 +11,8 @@ import Foundation
 struct MTRLineStation {
     let line: MTRLine
     let station: MTRStation
-    init?(line: MTRLine, station: MTRStation) {
-        guard line.allStations.contains(station) else { return nil }
+    private init?(line: MTRLine, station: MTRStation) {
+        guard allStationsForLine(line).contains(station) else { return nil }
         self.line = line
         self.station = station
     }
@@ -67,17 +67,31 @@ extension MTRLine {
         }
     }
 
-    fileprivate var allStations: [MTRStation] {
-        switch self {
-        case .tseungKwanOLine:
-            return [.northPoint, .quarryBay, .yauTong, .tiuKengLeng, .tseungKwanO, .hangHau, .poLam, .lohasPark]
-
-        case .westRainLine:
-            return [.hungHom, .eastTsimShaTsui, .austin, .namCheong, .meiFoo, .tsuenWanWest, .kamSheungRoad, .yuenLong, .longPing, .tinShuiWai, .siuHong, .tuenMun]
-        }
-    }
-
     var allLineStations: [MTRLineStation] {
-        return self.allStations.map { MTRLineStation(line: self, verifiedStation: $0) }
+        guard let result = lineToLineStationsMap[self] else {
+            assertionFailure("unexpected") // won't happen; will checked by compiler for `allStationsForLine(_:)`
+            return []
+        }
+        return result
     }
 }
+
+
+private func allStationsForLine(_ line: MTRLine) -> [MTRStation] {
+    switch line {
+    case .tseungKwanOLine:
+        return [.northPoint, .quarryBay, .yauTong, .tiuKengLeng, .tseungKwanO, .hangHau, .poLam, .lohasPark]
+
+    case .westRainLine:
+        return [.hungHom, .eastTsimShaTsui, .austin, .namCheong, .meiFoo, .tsuenWanWest, .kamSheungRoad, .yuenLong, .longPing, .tinShuiWai, .siuHong, .tuenMun]
+    }
+}
+
+private let lineToLineStationsMap: [MTRLine: [MTRLineStation]] = {
+    var dict = [MTRLine: [MTRLineStation]]()
+    for line in MTRLine.allCases {
+        let stations = allStationsForLine(line)
+        dict[line] = stations.map { MTRLineStation(line: line, verifiedStation: $0) }
+    }
+    return dict
+}()
