@@ -39,6 +39,12 @@ enum MTRStationCode: String {
     case tsingYi          = "TSY"
     case sunnyBay         = "SUN"
     case tungChung        = "TUC"
+
+//  case hongKong         = "HOK"
+//  case kowloon          = "KOW"
+//  case tsingYi          = "TSY"
+    case airport          = "AIR"
+    case asiaWorldExpo    = "AWE"
 }
 
 extension MTRStationCode {
@@ -74,6 +80,12 @@ extension MTRStationCode {
         case .tsingYi:          return "青衣"
         case .sunnyBay:         return "欣澳"
         case .tungChung:        return "東涌"
+
+//      case .hongKong:         return "香港"
+//      case .kowloon:          return "九龍"
+//      case .tsingYi:          return "青衣"
+        case .airport:          return "機場"
+        case .asiaWorldExpo:    return "博覽館"
         }
     }
 }

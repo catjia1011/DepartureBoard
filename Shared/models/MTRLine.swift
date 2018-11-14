@@ -37,6 +37,8 @@ extension MTRLine {
             return westRainLine
         case .TCL:
             return tungChungLine
+        case .AEL:
+            return airportExpress
         }
     }
 }
@@ -72,7 +74,7 @@ extension MTRStation {
 
 // MARK: -
 extension MTRLine {
-    static let allLines: [MTRLine] = [tseungKwanOLine, westRainLine, tungChungLine]
+    static let allLines: [MTRLine] = [tseungKwanOLine, westRainLine, tungChungLine, airportExpress]
 
     static let tseungKwanOLine = MTRLine(
         code: .TKL,
@@ -122,6 +124,23 @@ extension MTRLine {
         destinationNameBlock: { (direction, withRoutingWord) in
             switch direction {
             case .up:   return withRoutingWord ? "往東涌" : "東涌"
+            case .down: return withRoutingWord ? "往香港" : "香港"
+            }
+    })
+
+    static let airportExpress = MTRLine(
+        code: .AEL,
+        color: UIColor(R: 0, G: 112, B: 120),
+        stationCodes: [
+            .hongKong, .kowloon, .tsingYi, .airport, .asiaWorldExpo
+        ],
+        endStations: [
+            .hongKong: .up,
+            .asiaWorldExpo: .down
+        ],
+        destinationNameBlock: { (direction, withRoutingWord) in
+            switch direction {
+            case .up:   return withRoutingWord ? "往機場/博覽館" : "機場/博覽館"
             case .down: return withRoutingWord ? "往香港" : "香港"
             }
     })

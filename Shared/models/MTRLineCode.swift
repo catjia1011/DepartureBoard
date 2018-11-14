@@ -12,6 +12,7 @@ enum MTRLineCode: String {
     case TKL // Tseung KwanO Line
     case WRL // West Rail Line
     case TCL // Tung Chung Line
+    case AEL // Airport Express
 }
 
 extension MTRLineCode {
@@ -23,6 +24,8 @@ extension MTRLineCode {
             return "西鐵綫"
         case .TCL:
             return "東涌綫"
+        case .AEL:
+            return "機場快綫"
         }
     }
 }
