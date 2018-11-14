@@ -12,7 +12,7 @@ struct MTRStation {
     let code: MTRStationCode
     let lineCode: MTRLineCode
 
-    private init?(lineCode: MTRLineCode, stationCode: MTRStationCode) {
+    init?(lineCode: MTRLineCode, stationCode: MTRStationCode) {
         guard MTRLine.withCode(lineCode).stations.contains(where: { $0.code == stationCode }) else { return nil }
         self.code = stationCode
         self.lineCode = lineCode
@@ -44,33 +44,3 @@ extension MTRStation {
 }
 
 extension MTRStation: Equatable, Codable {}
-
-
-// MARK: -
-extension MTRStation {
-    var availableDirections: [MTRLine.Direction] {
-        if let endStationDirection = lineCode.endStations[code] {
-            return [endStationDirection]
-        }
-        return MTRLine.Direction.allCases
-    }
-}
-
-extension MTRLineCode {
-    var endStations: [MTRStationCode: MTRLine.Direction] {
-        switch self {
-        case .TKL:
-            return [
-                .northPoint: .up,
-                .lohasPark: .down,
-                .poLam: .down,
-            ]
-
-        case .WRL:
-            return [
-                .hungHom: .up,
-                .tuenMun: .down,
-            ]
-        }
-    }
-}
