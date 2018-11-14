@@ -74,7 +74,7 @@ extension MTRLine {
 
     static let tseungKwanOLine = MTRLine(
         code: .TKL,
-        color: UIColor(red: 125.0 / 255, green: 73.0 / 255, blue: 157.0 / 255, alpha: 1),
+        color: UIColor(R: 125, G: 73, B: 157),
         stationCodes: [
             .northPoint, .quarryBay, .yauTong, .tiuKengLeng, .tseungKwanO, .hangHau, .poLam, .lohasPark
         ],
@@ -92,7 +92,7 @@ extension MTRLine {
 
     static let westRainLine = MTRLine(
         code: .WRL,
-        color: UIColor(red: 182.0 / 255, green: 0.0 / 255, blue: 141.0 / 255, alpha: 1),
+        color: UIColor(R: 182, G: 0, B: 141),
         stationCodes: [
             .hungHom, .eastTsimShaTsui, .austin, .namCheong, .meiFoo, .tsuenWanWest, .kamSheungRoad, .yuenLong, .longPing, .tinShuiWai, .siuHong, .tuenMun
         ],

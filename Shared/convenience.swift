@@ -32,6 +32,10 @@ extension UITableView {
 
 extension UIColor {
     static let mainTintColor: UIColor = UIColor(red: 180.0 / 255, green: 34.0 / 255, blue: 73.0 / 255, alpha: 1)
+
+    convenience init(R: Int, G: Int, B: Int) {
+        self.init(red: CGFloat(R) / 255, green: CGFloat(G) / 255, blue: CGFloat(B) / 255, alpha: 1)
+    }
 }
 
 
