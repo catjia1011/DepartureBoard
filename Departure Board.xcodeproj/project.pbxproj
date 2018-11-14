@@ -72,6 +72,8 @@
 		4E243B18219C51D10072A4E5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Stations.strings"; sourceTree = "<group>"; };
 		4E243B1E219C5D370072A4E5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4E243B20219C5D390072A4E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4E243B21219C5F590072A4E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		4E243B22219C5F590072A4E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Stations.strings"; sourceTree = "<group>"; };
 		4E5C00EE215FBDFA0027B1DA /* Departure Board.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Departure Board.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E5C00F1215FBDFA0027B1DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E5C00F3215FBDFA0027B1DA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				en,
 				Base,
 				"zh-Hant",
+				"zh-Hans",
 			);
 			mainGroup = 4E5C00E5215FBDFA0027B1DA;
 			productRefGroup = 4E5C00EF215FBDFA0027B1DA /* Products */;
@@ -448,6 +451,7 @@
 			children = (
 				4E243B16219C51C00072A4E5 /* en */,
 				4E243B18219C51D10072A4E5 /* zh-Hant */,
+				4E243B22219C5F590072A4E5 /* zh-Hans */,
 			);
 			name = Stations.strings;
 			sourceTree = "<group>";
@@ -457,6 +461,7 @@
 			children = (
 				4E243B1E219C5D370072A4E5 /* zh-Hant */,
 				4E243B20219C5D390072A4E5 /* en */,
+				4E243B21219C5F590072A4E5 /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
