@@ -23,6 +23,8 @@ class StationListCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
 
+        self.textLabel?.adjustsFontSizeToFitWidth = true // TODO; not elegant
+
         stackView.axis = .horizontal
         stackView.spacing = 5
         self.contentView.addSubview(stackView)
