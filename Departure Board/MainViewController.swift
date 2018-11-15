@@ -26,7 +26,7 @@ class MainViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "當前顯示車站"
+        self.title = NSLocalizedString("ui.current_displayed_stations", value: "Current Stations", comment: "當前顯示車站")
 
         self.tableView.register(cellType: ValueTableViewCell.self)
         self.tableView.tableFooterView = UIView()
@@ -85,7 +85,7 @@ extension MainViewController {
 
         case .manage:
             let cell = tableView.dequeue(cellType: ValueTableViewCell.self, for: indexPath)
-            cell.textLabel?.text = "添加或移除車站"
+            cell.textLabel?.text = NSLocalizedString("ui.add_or_remove_stations", value: "Add / Remove Stations", comment: "添加或移除車站")
             cell.textLabel?.textColor = self.isEditing ? .lightGray : .mainTintColor
             cell.detailTextLabel?.text = nil
             return cell

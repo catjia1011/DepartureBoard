@@ -1,0 +1,66 @@
+/* 機場/博覽館 */
+"direction.AIR_AWE" = "Airport / Expo";
+
+/* 香港 */
+"direction.HOK" = "Hong Kong";
+
+/* 紅磡 */
+"direction.HUH" = "Hung Hom";
+
+/* 北角 */
+"direction.NOP" = "North Point";
+
+/* 寶琳/康城 */
+"direction.POA_LHP" = "Po Lam / LHP";
+
+/* 往機場/博覽館 */
+"direction.to_AIR_AWE" = "To Airport / Expo";
+
+/* 往香港 */
+"direction.to_HOK" = "To Hong Kong";
+
+/* 往紅磡 */
+"direction.to_HUH" = "To Hung Hom";
+
+/* 往北角 */
+"direction.to_NOP" = "To North Point";
+
+/* 往寶琳/康城 */
+"direction.to_POA_LHP" = "To Po Lam / LHP";
+
+/* 往東涌 */
+"direction.to_TUC" = "To Tung Chung";
+
+/* 往屯門 */
+"direction.to_TUM" = "To Tuen Mun";
+
+/* 東涌 */
+"direction.TUC" = "Tung Chung";
+
+/* 屯門 */
+"direction.TUM" = "Tuen Mun";
+
+/* 機場快綫 */
+"line.AEL" = "Airport Express";
+
+/* 東涌綫 */
+"line.TCL" = "Tung Chung Line";
+
+/* 將軍澳綫 */
+"line.TKL" = "Tseung KwanO Line";
+
+/* 西鐵綫 */
+"line.WRL" = "West Rail Line";
+
+/* 添加 MTR 站點 */
+"ui.add_mtr_stations" = "Add MTR Stations";
+
+/* 添加或移除車站 */
+"ui.add_or_remove_stations" = "Add / Remove Stations";
+
+/* 當前顯示車站 */
+"ui.current_displayed_stations" = "Current Stations";
+
+/* 車站列表 */
+"ui.station_list" = "Station List";
+

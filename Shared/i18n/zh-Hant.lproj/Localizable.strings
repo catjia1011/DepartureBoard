@@ -1,0 +1,66 @@
+/* 機場/博覽館 */
+"direction.AIR_AWE" = "機場/博覽館";
+
+/* 香港 */
+"direction.HOK" = "香港";
+
+/* 紅磡 */
+"direction.HUH" = "紅磡";
+
+/* 北角 */
+"direction.NOP" = "北角";
+
+/* 寶琳/康城 */
+"direction.POA_LHP" = "寶琳/康城";
+
+/* 往機場/博覽館 */
+"direction.to_AIR_AWE" = "往機場/博覽館";
+
+/* 往香港 */
+"direction.to_HOK" = "往香港";
+
+/* 往紅磡 */
+"direction.to_HUH" = "往紅磡";
+
+/* 往北角 */
+"direction.to_NOP" = "往北角";
+
+/* 往寶琳/康城 */
+"direction.to_POA_LHP" = "往寶琳/康城";
+
+/* 往東涌 */
+"direction.to_TUC" = "往東涌";
+
+/* 往屯門 */
+"direction.to_TUM" = "往屯門";
+
+/* 東涌 */
+"direction.TUC" = "東涌";
+
+/* 屯門 */
+"direction.TUM" = "屯門";
+
+/* 機場快綫 */
+"line.AEL" = "機場快綫";
+
+/* 東涌綫 */
+"line.TCL" = "東涌綫";
+
+/* 將軍澳綫 */
+"line.TKL" = "將軍澳綫";
+
+/* 西鐵綫 */
+"line.WRL" = "西鐵綫";
+
+/* 添加 MTR 站點 */
+"ui.add_mtr_stations" = "添加 MTR 站點";
+
+/* 添加或移除車站 */
+"ui.add_or_remove_stations" = "添加或移除車站";
+
+/* 當前顯示車站 */
+"ui.current_displayed_stations" = "當前顯示車站";
+
+/* 車站列表 */
+"ui.station_list" = "車站列表";
+

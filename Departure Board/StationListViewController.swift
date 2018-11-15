@@ -16,7 +16,7 @@ class StationListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "車站列表"
+        self.title = NSLocalizedString("ui.station_list", value: "Station List", comment: "車站列表")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDoneButtonItem(_:)))
 
         self.tableView.register(cellType: StationListCell.self)
