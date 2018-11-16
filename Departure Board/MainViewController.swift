@@ -31,13 +31,8 @@ class MainViewController: UITableViewController {
         self.tableView.register(cellType: ValueTableViewCell.self)
         self.tableView.tableFooterView = UIView()
 
+        self.settings = AppSettings.getSettings()
         self.reloadData()
-
-        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveNotification(_:)), name: AppSettings.stationListDidUpdate, object: nil)
-    }
-
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -49,10 +44,13 @@ class MainViewController: UITableViewController {
     }
 
     private func reloadData() {
-        self.settings = AppSettings.getSettings()
         self.sectionValues = settings.count > 0 ? [.settings, .manage] : [.manage]
         self.navigationItem.rightBarButtonItem = settings.count > 1 ? self.editButtonItem : nil
         self.tableView.reloadData()
+    }
+    
+    private func saveCurrentSettings() {
+        AppSettings.setStationsAndDirections(self.settings)
     }
 }
 
@@ -100,8 +98,9 @@ extension MainViewController {
             break
 
         case .manage:
-            let vc = UINavigationController(rootViewController: StationListViewController())
-            self.present(vc, animated: true, completion: nil)
+            let listVC = StationListViewController(settings: self.settings)
+            listVC.delegate = self
+            self.present(UINavigationController(rootViewController: listVC), animated: true, completion: nil)
         }
     }
 
@@ -136,8 +135,8 @@ extension MainViewController {
         var newSettings = self.settings
         let item = newSettings.remove(at: sourceIndexPath.row)
         newSettings.insert(item, at: destinationIndexPath.row)
-        AppSettings.setStationsAndDirections(newSettings)
-        self.reloadData()
+        self.settings = newSettings
+        self.saveCurrentSettings()
     }
 
     override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
@@ -148,11 +147,11 @@ extension MainViewController {
     }
 }
 
-extension MainViewController {
-    @objc private func didReceiveNotification(_ notification: Notification) {
-        if notification.name == AppSettings.stationListDidUpdate {
-            self.reloadData()
-        }
+extension MainViewController: StationListViewControllerDelegate {
+    func stationListViewController(_ controller: StationListViewController, didFinishWithNewSettings settings: [AppSettings.StationAndDirection]) {
+        self.settings = settings
+        self.reloadData()
+        self.saveCurrentSettings()
     }
 }
 

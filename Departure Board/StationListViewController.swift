@@ -8,42 +8,38 @@
 
 import UIKit
 
+protocol StationListViewControllerDelegate: NSObjectProtocol {
+    func stationListViewController(_ controller: StationListViewController, didFinishWithNewSettings settings: [AppSettings.StationAndDirection]) -> Void
+}
+
 class StationListViewController: UITableViewController {
 
-    let lines = MTRLine.allLines
-    var settings: [AppSettings.StationAndDirection] = []
-
+    weak var delegate: StationListViewControllerDelegate?
+    
+    private let lines = MTRLine.allLines
+    private var settings: [AppSettings.StationAndDirection]
+    init(settings: [AppSettings.StationAndDirection]) {
+        self.settings = settings
+        super.init(style: .plain)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.title = NSLocalizedString("ui.station_list", value: "Station List", comment: "車站列表")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDoneButtonItem(_:)))
 
         self.tableView.register(cellType: StationListCell.self)
         self.tableView.tableFooterView = UIView()
-
-        self.reloadData()
-
-        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveNotification(_:)), name: AppSettings.stationListDidUpdate, object: nil)
-    }
-
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
-    private func reloadData() {
-        self.settings = AppSettings.getSettings()
-        self.tableView.reloadData()
     }
 
     @objc private func didTapDoneButtonItem(_ sender: Any) {
+        self.delegate?.stationListViewController(self, didFinishWithNewSettings: self.settings)
         self.dismiss(animated: true, completion: nil)
-    }
-
-    @objc private func didReceiveNotification(_ notification: Notification) {
-        if notification.name == AppSettings.stationListDidUpdate {
-            self.reloadData()
-        }
     }
 }
 
@@ -83,12 +79,12 @@ extension StationListViewController: StationListCellDelegate {
         if let index = newSettings.index(of: setting) {
             newSettings.remove(at: index)
         }
-
         if isSelected {
             newSettings.append(setting)
         }
-
-        AppSettings.setStationsAndDirections(newSettings)
+        self.settings = newSettings
+        
+        self.tableView.reloadData()
     }
 
 }
