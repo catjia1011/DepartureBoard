@@ -43,7 +43,7 @@ class DepartureWidgetController: UIViewController, NCWidgetProviding {
         self.view.addSubview(stackView)
 
         for (idx, vc) in vcs.enumerated() {
-            guard idx < 3 else { break } // MAX 3
+            guard idx < AppConstant.maxDisplayCount else { break }
             stackView.addArrangedSubview(vc.view)
             self.addChild(vc)
         }

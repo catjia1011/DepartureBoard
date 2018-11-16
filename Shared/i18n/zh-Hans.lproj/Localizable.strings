@@ -61,6 +61,9 @@
 /* 當前顯示車站 */
 "ui.current_displayed_stations" = "当前显示车站";
 
+/* 由於 Widget 寬度有限，僅會顯示前 %d 個車站。 */
+"ui.only_first_%d_stations_will_be_displayed" = "由于 Widget 宽度有限，仅会显示前 %d 个车站。";
+
 /* 車站列表 */
 "ui.station_list" = "车站列表";
 

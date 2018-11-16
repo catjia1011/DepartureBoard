@@ -190,6 +190,15 @@ extension MainViewController {
         }
         return proposedDestinationIndexPath
     }
+
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        switch sectionValues[section] {
+        case .settings:
+            return nil
+        case .manage:
+            return String.localizedStringWithFormat(NSLocalizedString("ui.only_first_%d_stations_will_be_displayed", value: "Only first %d stations will be displayed since widget area is limited.", comment: "由於 Widget 寬度有限，僅會顯示前 %d 個車站。"), AppConstant.maxDisplayCount)
+        }
+    }
 }
 
 extension MainViewController: StationListViewControllerDelegate {
