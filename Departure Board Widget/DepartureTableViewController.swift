@@ -46,6 +46,7 @@ class DepartureTableViewController: UITableViewController {
         titleLabel.font = .systemFont(ofSize: 11, weight: .bold)
         titleLabel.textAlignment = .center
         titleLabel.textColor = UIColor.black.withAlphaComponent(0.9)
+        titleLabel.allowsDefaultTighteningForTruncation = true
         titleLabel.frame = tableHeader.bounds
         titleLabel.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableHeader.addSubview(titleLabel)
