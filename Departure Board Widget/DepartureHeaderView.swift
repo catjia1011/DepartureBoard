@@ -61,7 +61,7 @@ class DepartureHeaderView: UIView {
             maskLayer.locations = [0, 1, 1, 1] as [NSNumber]
         }
 
-        assert(maskLayer.locations?.count != maskLayer.colors?.count, "unexpected gradient setting")
+        assert(maskLayer.colors != nil && maskLayer.locations?.count == maskLayer.colors?.count, "unexpected gradient setting")
     }
 
     func showLoading() {
