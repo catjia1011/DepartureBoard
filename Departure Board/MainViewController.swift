@@ -13,7 +13,25 @@ class MainViewController: UITableViewController {
     private enum Section { case settings, manage }
     private var sectionValues: [Section] = [.settings, .manage]
 
-    var settings: [AppSettings.StationAndDirection] = []
+    var settings: [AppSettings.StationAndDirection] = [] {
+        didSet {
+            self.editButtonItem.isEnabled = (settings.count > 0)
+            if settings.count == 0 {
+                self.setEditing(false, animated: true)
+            }
+        }
+    }
+
+    // only one and not being reused; convenient fore style updating
+    private let manageButtonCell: UITableViewCell = {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = NSLocalizedString("ui.add_or_remove_stations", value: "Add / Remove Stations", comment: "添加或移除車站")
+        return cell
+    }()
+
+    private func updateManageButtonCellStatus() {
+        manageButtonCell.textLabel?.textColor = self.isEditing ? .lightGray : .mainTintColor
+    }
 
     init() {
         super.init(style: .grouped)
@@ -27,25 +45,22 @@ class MainViewController: UITableViewController {
         super.viewDidLoad()
 
         self.title = NSLocalizedString("ui.current_displayed_stations", value: "Current Stations", comment: "當前顯示車站")
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
 
         self.tableView.register(cellType: ValueTableViewCell.self)
         self.tableView.tableFooterView = UIView()
 
-        self.settings = AppSettings.getSettings()
-        self.reloadData()
+        self.loadSettingsAndReloadTableView(AppSettings.getSettings())
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-
-        if let section = self.sectionValues.index(of: .manage) {
-            self.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
-        }
+        self.updateManageButtonCellStatus()
     }
-
-    private func reloadData() {
+    
+    private func loadSettingsAndReloadTableView(_ settings: [AppSettings.StationAndDirection]) {
+        self.settings = settings
         self.sectionValues = settings.count > 0 ? [.settings, .manage] : [.manage]
-        self.navigationItem.rightBarButtonItem = settings.count > 1 ? self.editButtonItem : nil
         self.tableView.reloadData()
     }
     
@@ -82,11 +97,8 @@ extension MainViewController {
             return cell
 
         case .manage:
-            let cell = tableView.dequeue(cellType: ValueTableViewCell.self, for: indexPath)
-            cell.textLabel?.text = NSLocalizedString("ui.add_or_remove_stations", value: "Add / Remove Stations", comment: "添加或移除車站")
-            cell.textLabel?.textColor = self.isEditing ? .lightGray : .mainTintColor
-            cell.detailTextLabel?.text = nil
-            return cell
+            self.updateManageButtonCellStatus()
+            return self.manageButtonCell
         }
     }
 
@@ -114,7 +126,40 @@ extension MainViewController {
     }
 
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .none
+        switch sectionValues[indexPath.section] {
+        case .settings:
+            return .delete
+        case .manage:
+            return .none
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch sectionValues[indexPath.section] {
+        case .settings:
+            switch editingStyle {
+            case .delete:
+                // remove settings section if it's empty
+                self.settings.remove(at: indexPath.row)
+                if self.settings.count == 0 {
+                    self.sectionValues.remove(at: indexPath.section)
+                    tableView.beginUpdates()
+                    tableView.deleteSections([indexPath.section], with: .automatic)
+                    tableView.endUpdates()
+                } else {
+                    tableView.beginUpdates()
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                    tableView.endUpdates()
+                }
+                self.saveCurrentSettings()
+
+            case .insert, .none:
+                break
+            }
+            
+        case .manage:
+            break
+        }
     }
 
     override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
@@ -128,7 +173,7 @@ extension MainViewController {
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         guard sourceIndexPath.section == destinationIndexPath.section && sectionValues[sourceIndexPath.section] == .settings else {
             assertionFailure("unexpected")
-            self.reloadData()
+            self.tableView.reloadData()
             return
         }
 
@@ -149,8 +194,7 @@ extension MainViewController {
 
 extension MainViewController: StationListViewControllerDelegate {
     func stationListViewController(_ controller: StationListViewController, didFinishWithNewSettings settings: [AppSettings.StationAndDirection]) {
-        self.settings = settings
-        self.reloadData()
+        self.loadSettingsAndReloadTableView(settings)
         self.saveCurrentSettings()
     }
 }
