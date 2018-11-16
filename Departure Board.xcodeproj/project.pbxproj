@@ -31,6 +31,7 @@
 		4E5C012B215FE0170027B1DA /* DepartureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5C012A215FE0170027B1DA /* DepartureCell.swift */; };
 		4E83F9F4219AD42800FEECB3 /* StationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E83F9F3219AD42800FEECB3 /* StationListViewController.swift */; };
 		4E83F9F6219ADD4C00FEECB3 /* StationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E83F9F5219ADD4C00FEECB3 /* StationListCell.swift */; };
+		4EA9B537219F21100071323D /* DepartureHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA9B536219F21100071323D /* DepartureHeaderView.swift */; };
 		4EB6CA36219B37D200A36D0F /* MTRLineCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6CA35219B37D200A36D0F /* MTRLineCode.swift */; };
 		4EB6CA37219B37D200A36D0F /* MTRLineCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6CA35219B37D200A36D0F /* MTRLineCode.swift */; };
 		4EB6CA39219B37D800A36D0F /* MTRStationCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB6CA38219B37D800A36D0F /* MTRStationCode.swift */; };
@@ -94,6 +95,7 @@
 		4E5C012A215FE0170027B1DA /* DepartureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureCell.swift; sourceTree = "<group>"; };
 		4E83F9F3219AD42800FEECB3 /* StationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListViewController.swift; sourceTree = "<group>"; };
 		4E83F9F5219ADD4C00FEECB3 /* StationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListCell.swift; sourceTree = "<group>"; };
+		4EA9B536219F21100071323D /* DepartureHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureHeaderView.swift; sourceTree = "<group>"; };
 		4EB6CA35219B37D200A36D0F /* MTRLineCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTRLineCode.swift; sourceTree = "<group>"; };
 		4EB6CA38219B37D800A36D0F /* MTRStationCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTRStationCode.swift; sourceTree = "<group>"; };
 		4EB6CA3B219B37DF00A36D0F /* MTRStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTRStation.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				4EEB9C6821639EFC00E9A56E /* Departure Board Widget.entitlements */,
 				4E5C0115215FDB470027B1DA /* DepartureWidgetController.swift */,
 				4E5C0128215FDED70027B1DA /* DepartureTableViewController.swift */,
+				4EA9B536219F21100071323D /* DepartureHeaderView.swift */,
 				4E5C012A215FE0170027B1DA /* DepartureCell.swift */,
 				4E5C0103215FBF740027B1DA /* APIClient.swift */,
 				4E5C011A215FDB470027B1DA /* Info.plist */,
@@ -431,6 +434,7 @@
 				4E5C0123215FDEC60027B1DA /* convenience.swift in Sources */,
 				4E220F98219C1D1D00D83116 /* MTRLine.swift in Sources */,
 				4EB6CA37219B37D200A36D0F /* MTRLineCode.swift in Sources */,
+				4EA9B537219F21100071323D /* DepartureHeaderView.swift in Sources */,
 				4EB6CA3D219B37DF00A36D0F /* MTRStation.swift in Sources */,
 				4E5C0124215FDEC60027B1DA /* APIClient.swift in Sources */,
 				4E5C0125215FDEC60027B1DA /* DepartureInfo.swift in Sources */,

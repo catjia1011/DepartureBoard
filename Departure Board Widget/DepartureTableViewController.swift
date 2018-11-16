@@ -14,7 +14,7 @@ private let NORMAL_ALPHA = 0.25 as CGFloat
 
 class DepartureTableViewController: UITableViewController {
 
-    private let loadingIndicator = UIActivityIndicatorView(style: .gray)
+    private let headerView = DepartureHeaderView()
 
     let station: MTRStation, direction: MTRLine.Direction
     init(station: MTRStation, direction: MTRLine.Direction) {
@@ -38,34 +38,17 @@ class DepartureTableViewController: UITableViewController {
         self.tableView.register(cellType: DepartureCell.self)
         self.tableView.isUserInteractionEnabled = false
 
-        let tableHeader = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: COMPACT_WIDGET_HEIGHT / 4))
-        tableHeader.backgroundColor = UIColor.white.withAlphaComponent(LIGHT_ALPHA)
-
-        let titleLabel = UILabel()
-        titleLabel.text = "\(station.name) → \(MTRLine.withCode(station.lineCode).destinationName(for: direction))"
-        titleLabel.font = .systemFont(ofSize: 11, weight: .bold)
-        titleLabel.textAlignment = .center
-        titleLabel.textColor = UIColor.black.withAlphaComponent(0.9)
-        titleLabel.allowsDefaultTighteningForTruncation = true
-        titleLabel.frame = tableHeader.bounds
-        titleLabel.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        tableHeader.addSubview(titleLabel)
-
-        loadingIndicator.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
-        loadingIndicator.sizeToFit()
-        loadingIndicator.frame.origin.x = tableHeader.bounds.width - loadingIndicator.frame.width - 8
-        loadingIndicator.center.y = titleLabel.center.y
-        loadingIndicator.autoresizingMask = [.flexibleLeftMargin, .flexibleTopMargin, .flexibleBottomMargin]
-        tableHeader.addSubview(loadingIndicator)
-
+        headerView.frame = CGRect(x: 0, y: 0, width: self.tableView.bounds.width, height: COMPACT_WIDGET_HEIGHT / 4)
+        headerView.backgroundColor = UIColor.white.withAlphaComponent(LIGHT_ALPHA)
+        headerView.title = "\(station.name) → \(MTRLine.withCode(station.lineCode).destinationName(for: direction))"
+        self.tableView.tableHeaderView = headerView
         self.tableView.tableFooterView = UIView()
-        self.tableView.tableHeaderView = tableHeader
     }
 
     func fetchData(completion: @escaping () -> Void) {
-        self.loadingIndicator.startAnimating()
+        self.headerView.showLoading()
         APIClient.shared.request(station: self.station, direction: self.direction) { [weak self] (result) in
-            self?.loadingIndicator.stopAnimating()
+            self?.headerView.dismissLoading()
             completion()
 
             guard let strongSelf = self else { return }
