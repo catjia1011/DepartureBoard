@@ -12,6 +12,7 @@ class DepartureHeaderView: UIView {
 
     private let titleLabel = UILabel()
     private let loadingIndicator = UIActivityIndicatorView(style: .gray)
+    private let maskLayer = CAGradientLayer()
 
     var title: String? {
         set { self.titleLabel.text = newValue }
@@ -30,6 +31,10 @@ class DepartureHeaderView: UIView {
         loadingIndicator.sizeToFit()
         loadingIndicator.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
         self.addSubview(loadingIndicator)
+
+        maskLayer.colors = [UIColor.black, UIColor.black, UIColor.black.withAlphaComponent(0), UIColor.black.withAlphaComponent(0)].map { $0.cgColor }
+        maskLayer.startPoint = CGPoint(x: 0, y: 0)
+        maskLayer.endPoint = CGPoint(x: 1, y: 0)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -41,15 +46,31 @@ class DepartureHeaderView: UIView {
 
         let insets = UIEdgeInsets(top: 0, left: layoutMargins.left, bottom: 0, right: layoutMargins.right)
         titleLabel.frame = self.bounds.inset(by: insets)
+        maskLayer.frame = titleLabel.bounds
         loadingIndicator.frame.origin.x = self.bounds.inset(by: insets).maxX - loadingIndicator.frame.width
         loadingIndicator.center.y = titleLabel.center.y
+
+        // set gradient locations
+        let gradientWidth: CGFloat = 12
+        let titleWidth = titleLabel.frame.width
+        let indicatorWidth = loadingIndicator.frame.width
+        let locations = [0, (titleWidth - indicatorWidth - gradientWidth), (titleWidth - indicatorWidth), titleWidth]
+        if locations.sorted() == locations && indicatorWidth != 0 {
+            maskLayer.locations = locations.map { $0 / titleWidth } as [NSNumber]
+        } else {
+            maskLayer.locations = [0, 1, 1, 1] as [NSNumber]
+        }
+
+        assert(maskLayer.locations?.count != maskLayer.colors?.count, "unexpected gradient setting")
     }
 
     func showLoading() {
         self.loadingIndicator.startAnimating()
+        titleLabel.layer.mask = maskLayer
     }
 
     func dismissLoading() {
         self.loadingIndicator.stopAnimating()
+        titleLabel.layer.mask = nil
     }
 }
