@@ -14,7 +14,7 @@ Download the code and install CocoaPods. Then run `pod install`. See details: <h
 
 Install the app to your iPhone and enable it in the widget screen.
 
-<img width="880" alt="Departure Board" src="https://raw.githubusercontent.com/catjia1011/DepartureBoard/master/preview.png"/>
+<img width="440" alt="Departure Board" src="https://raw.githubusercontent.com/catjia1011/DepartureBoard/master/preview.png"/>
 
 ## License
 All code in this project is under the terms and conditions of the [MIT](https://choosealicense.com/licenses/mit/) License.
