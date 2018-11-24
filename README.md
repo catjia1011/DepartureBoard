@@ -2,9 +2,7 @@
 
 Departure Board is an iOS widget that allows you to view the departure boards of some specific MTR stations at the same time.
 
-Currently it's designed for LOHAS Park residents to wait for next train at home, and to arrive at target station in time when a "To LOHAS Park" train appears.
-
-Currently only Tseung Kwan O Line is supported. More line support and features are coming in future.
+It was designed for LOHAS Park residents to wait for next train at home, and to arrive at target station in time when a "To LOHAS Park" train appears. Now more MTR lines are also supported.
 
 ## Installation
 
