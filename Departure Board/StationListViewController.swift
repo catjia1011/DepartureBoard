@@ -76,7 +76,7 @@ extension StationListViewController: StationListCellDelegate {
         let setting = AppSettings.StationAndDirection(station: station, direction: direction)
 
         var newSettings = self.settings
-        if let index = newSettings.index(of: setting) {
+        if let index = newSettings.firstIndex(of: setting) {
             newSettings.remove(at: index)
         }
         if isSelected {

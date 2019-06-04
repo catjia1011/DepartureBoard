@@ -155,6 +155,8 @@ extension MainViewController {
 
             case .insert, .none:
                 break
+            @unknown default:
+                break
             }
             
         case .manage:
